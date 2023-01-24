@@ -23,24 +23,32 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider } from 'react-redux';
+import { Provider as StoreProvider } from "react-redux";
 import Start from "./screens/Start";
 import SignIn from "./screens/SignIn";
+import store from "./src/store";
 
 const Stack = createNativeStackNavigator();
 
 const App: () => Node = () => {
  
   return (
-   /*initialRouteName='Start'*/
-    <NavigationContainer>
-    <Stack.Navigator> 
-    <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
-    <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
+<StoreProvider store={store}>
+      <SafeAreaProvider style={{ flex: 1 }}>
+        <NavigationProvider />
+      </SafeAreaProvider>
+    </StoreProvider>
+
+  //   <StoreProvider store={store}>
+  //  {/* initialRouteName='Start'*/ }
+  //   <NavigationContainer>
+  //   <Stack.Navigator> 
+  //   <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
+  //   <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
     
-    </Stack.Navigator>
-    </NavigationContainer>
-    
+  //   </Stack.Navigator>
+  //   </NavigationContainer>
+  //   </StoreProvider>
   );
 };
 
