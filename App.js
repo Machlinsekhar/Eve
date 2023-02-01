@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -21,35 +20,57 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider as StoreProvider } from "react-redux";
+import { StoreProvider } from "react-redux";
+import NavigationProvider from './screens/Navigation.js'
 import Start from "./screens/Start";
 import SignIn from "./screens/SignIn";
-import store from "./src/store";
+import store from "./services/store.js";
+import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
-const App: () => Node = () => {
+export default function App () {
  
-  return (
-<StoreProvider store={store}>
-      <SafeAreaProvider style={{ flex: 1 }}>
-        <NavigationProvider />
-      </SafeAreaProvider>
-    </StoreProvider>
-
-  //   <StoreProvider store={store}>
-  //  {/* initialRouteName='Start'*/ }
-  //   <NavigationContainer>
-  //   <Stack.Navigator> 
-  //   <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
-  //   <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
-    
-  //   </Stack.Navigator>
-  //   </NavigationContainer>
-  //   </StoreProvider>
+    return (
+      <SafeAreaView style= {styles.sectionContainer} >
+         <View style={styles.sectionview}>
+          <Text style= {styles.sectionTitle}>Sign In</Text>
+          <Text style= {styles.sectioncode}>Sign In</Text>
+         </View>
+         <View style={styles.form}>
+         <Text style={styles.label}>Username</Text>
+         <TextInput
+        style={styles.input}
+        placeholder="Ex: abc@gmail.com"
+      />
+        <Text style={styles.label}>Password</Text>
+         <TextInput
+        secureTextEntry={true}
+        style={styles.input}
+        placeholder="Max 8 characters"
+      />
+         </View>
+ <View style ={styles.sectionbutton}>
+ <TouchableOpacity  onPress={() => Alert.alert('Yet to build :o')} style={styles.button}>
+   <Text style={styles.buttonText}>Sign In</Text>
+ </TouchableOpacity>
+ 
+ </View>
+ <View style ={styles.sectionimage}>
+ <Image source={require('./assests/signin.png')} />
+ </View>
+     </SafeAreaView>
   );
 };
 
-export default App;
+
+{/* <StoreProvider store={store}>
+      <View>
+        <NavigationProvider />
+        </View>
+ </StoreProvider>
+
+    
+    initialRouteName='Start'*/ }

@@ -25,6 +25,7 @@ import {
       />
         <Text style={styles.label}>Password</Text>
          <TextInput
+        secureTextEntry={true}
         style={styles.input}
         placeholder="Max 8 characters"
       />
@@ -36,7 +37,7 @@ import {
  
  </View>
  <View style ={styles.sectionimage}>
- <Image source={require('../assests/signin.png')} />
+ <Image source={require('siginin.png')} />
  </View>
      </SafeAreaView>
    );
