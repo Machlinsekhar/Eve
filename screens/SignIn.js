@@ -9,11 +9,14 @@ import {
     Alert,
     TextInput,
   } from 'react-native';
+  import { useNavigation } from '@react-navigation/native';
+  import Home from './Home';
 
   export default function SignIn(){
+    const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
-         <View style={styles.sectionview}>
+        <View style={styles.sectionview}>
           <Text style= {styles.sectionTitle}>Sign In</Text>
           <Text style= {styles.sectioncode}>Sign In</Text>
          </View>
@@ -28,22 +31,24 @@ import {
         secureTextEntry={true}
         style={styles.input}
         placeholder="Max 8 characters"
-      />
-         </View>
- <View style ={styles.sectionbutton}>
- <TouchableOpacity  onPress={() => Alert.alert('Yet to build :o')} style={styles.button}>
-   <Text style={styles.buttonText}>Sign In</Text>
- </TouchableOpacity>
- 
- </View>
- <View style ={styles.sectionimage}>
- <Image source={require('siginin.png')} />
+      /> 
+      </View>
+      <View style ={styles.sectionbutton}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Home')} style={styles.button}>
+        <Text style={styles.buttonText}>Sign In</Text>
+      </TouchableOpacity>
+      
+      </View>
+      <View style ={styles.sectionimage}>
+ <Image source={require('../assests/signin.png')} />
  </View>
      </SafeAreaView>
+
    );
+
  };
  
- const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
    sectionContainer: {
      paddingVertical: 65,
      paddingHorizontal: 24,
@@ -55,7 +60,7 @@ import {
      color: `#008080`,
      fontStyle: 'italic',
      paddingHorizontal: 85,
-   },
+    },
    sectioncode: {
      fontSize: 15,
      color: '#ffffff',
@@ -68,7 +73,7 @@ import {
    },
 
    form: {
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
    },
    
    input: {
@@ -80,7 +85,7 @@ import {
     borderWidth: 2,
     fontSize: 17,
     paddingHorizontal: 20,
-    fontWeight: 200
+    //  fontWeight: 200,
     },
 
     label: {
@@ -115,4 +120,4 @@ import {
      paddingHorizontal: 10,
    },
      
- });
+  });

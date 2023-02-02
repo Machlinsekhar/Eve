@@ -26,7 +26,8 @@ import { StoreProvider } from "react-redux";
 import NavigationProvider from './screens/Navigation.js'
 import Start from "./screens/Start";
 import SignIn from "./screens/SignIn";
-import store from "./services/store.js";
+import Home from './screens/Home.js';
+import Today from './screens/Today.js'
 import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
@@ -34,36 +35,17 @@ const Stack = createNativeStackNavigator();
 export default function App () {
  
     return (
-      <SafeAreaView style= {styles.sectionContainer} >
-         <View style={styles.sectionview}>
-          <Text style= {styles.sectionTitle}>Sign In</Text>
-          <Text style= {styles.sectioncode}>Sign In</Text>
-         </View>
-         <View style={styles.form}>
-         <Text style={styles.label}>Username</Text>
-         <TextInput
-        style={styles.input}
-        placeholder="Ex: abc@gmail.com"
-      />
-        <Text style={styles.label}>Password</Text>
-         <TextInput
-        secureTextEntry={true}
-        style={styles.input}
-        placeholder="Max 8 characters"
-      />
-         </View>
- <View style ={styles.sectionbutton}>
- <TouchableOpacity  onPress={() => Alert.alert('Yet to build :o')} style={styles.button}>
-   <Text style={styles.buttonText}>Sign In</Text>
- </TouchableOpacity>
- 
- </View>
- <View style ={styles.sectionimage}>
- <Image source={require('./assests/signin.png')} />
- </View>
-     </SafeAreaView>
+    <NavigationContainer>
+    <Stack.Navigator>
+    <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
+      <Stack.Screen name="Home" component={Home}/>
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="Today" component={Today} />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
+
 
 
 {/* <StoreProvider store={store}>

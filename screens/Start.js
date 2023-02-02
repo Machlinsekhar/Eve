@@ -8,8 +8,10 @@ import {
     Image,
     Alert,
   } from 'react-native';
+  import { useNavigation } from '@react-navigation/native';
 
   export default function Start(){
+    const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
          <View style={styles.sectionview}>
@@ -18,7 +20,7 @@ import {
           </Text>
          </View>
  <View style ={styles.sectionbutton}>
- <TouchableOpacity  onPress={() => Alert.alert('Yet to build :o')} style={styles.button}>
+ <TouchableOpacity  onPress={() => navigation.navigate('SignIn')} style={styles.button}>
    <Text style={styles.buttonText}>Sign In</Text>
  </TouchableOpacity>
  
