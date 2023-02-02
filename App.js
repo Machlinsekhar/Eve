@@ -40,7 +40,7 @@ export default function App () {
     <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
       <Stack.Screen name="Home" component={Home}/>
       <Stack.Screen name="SignIn" component={SignIn} />
-      <Stack.Screen name="Today" component={Today} />
+      {/* <Stack.Screen name="Today" component={Today} /> */}
     </Stack.Navigator>
     </NavigationContainer>
   );

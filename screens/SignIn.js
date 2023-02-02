@@ -85,7 +85,7 @@ import {
     borderWidth: 2,
     fontSize: 17,
     paddingHorizontal: 20,
-    //  fontWeight: 200,
+    // fontWeight: 200,
     },
 
     label: {

@@ -23,7 +23,7 @@ import { useNavigation } from '@react-navigation/native';
             <TouchableHighlight onPress={() => Alert.alert("Home")}>
             <Image style ={styles.icon}source={require('../assests/homeicon.png')} />
             </TouchableHighlight>
-            <TouchableHighlight onPress={() =>navigation.navigate('Today')}>
+            <TouchableHighlight onPress={() =>Alert.alert('Today')}>
             <Image style ={styles.icon}source={require('../assests/todayicon.png')} />
             </TouchableHighlight>
             <TouchableHighlight onPress={() =>Alert.alert("Calendar")}>
