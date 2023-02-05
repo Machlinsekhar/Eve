@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     SafeAreaView,
+    ScrollView,
     StyleSheet,
     Text,
     View,
@@ -12,10 +13,10 @@ import {
   import { useNavigation } from '@react-navigation/native';
   import SignIn from './SignIn';
 
-  export default function Register(){
+  export default function Details(){
     const navigation = useNavigation();
     return (
-      <SafeAreaView style= {styles.sectionContainer} >
+      <ScrollView style= {styles.sectionContainer} >
         <View style={styles.sectionview}>
           <Text style= {styles.sectionTitle}>Register</Text>
           {/* <Text style= {styles.sectioncode}>Register</Text> */}
@@ -39,7 +40,7 @@ import {
       /> 
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Info')} style={styles.button}>
+      <TouchableOpacity  onPress={() => navigation.navigate('SignIn')} style={styles.button}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
       
@@ -47,7 +48,7 @@ import {
       <View style ={styles.sectionimage}>
  <Image source={require('../assests/register.png')} />
  </View>
-     </SafeAreaView>
+     </ScrollView>
 
    );
 

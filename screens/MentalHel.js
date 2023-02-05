@@ -12,7 +12,7 @@ import {
   import { useNavigation } from '@react-navigation/native';
   import SignIn from './SignIn';
 
-  export default function Register(){
+  export default function Pregnant(){
     const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
@@ -39,7 +39,7 @@ import {
       /> 
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Info')} style={styles.button}>
+      <TouchableOpacity  onPress={() => navigation.navigate('SignIn')} style={styles.button}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
       

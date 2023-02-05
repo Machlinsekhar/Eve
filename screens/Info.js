@@ -18,15 +18,15 @@ import {
           <Text style= {styles.sectionTitle}>EVE</Text>
           <Text style= {styles.sectioncode}>Your body, your data, With Eve {'\n'} you're in control
           </Text>
+          <Text style= {styles.love}>Made with Love {'\n'} 💙
+          </Text>
+          <Text style= {styles.sectioninfo}>  Mach  Car  Seb  Ben</Text>
          </View>
  <View style ={styles.sectionbutton}>
- <TouchableOpacity  onPress={() => navigation.navigate('SignIn')} style={styles.button}>
-   <Text style={styles.buttonText}>Sign In</Text>
+ <TouchableOpacity  onPress={() => navigation.navigate('Home')} style={styles.button}>
+   <Text style={styles.buttonText}>Welcome</Text>
  </TouchableOpacity>
  
- <TouchableOpacity  onPress={() => Alert.alert('Nahi kiya ab tak :(')}style={styles.button}>
-   <Text style={styles.buttonText}>Register</Text>
- </TouchableOpacity>
  </View>
  <View style ={styles.sectionimage}>
  <Image source={require('../assests/login.png')} />
@@ -54,6 +54,22 @@ import {
      textAlign: 'center',
      fontWeight: '500'
    },
+   love: {
+    fontSize: 25,
+    color: '#2110FF',
+    textAlign: 'center',
+    fontWeight: '500',
+    paddingTop: 20,
+  },
+   sectioninfo: {
+    fontSize: 20,
+    color: '#ffffff',
+    textAlign: 'center',
+    fontWeight: '500',
+    paddingTop: 10,
+    
+  },
+  
    sectionview: {
        paddingBottom: 50,
    },

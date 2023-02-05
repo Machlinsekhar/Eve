@@ -18,7 +18,7 @@ import {
       <SafeAreaView style= {styles.sectionContainer} >
         <View style={styles.sectionview}>
           <Text style= {styles.sectionTitle}>Sign In</Text>
-          <Text style= {styles.sectioncode}>Sign In</Text>
+          {/* <Text style= {styles.sectioncode}>Sign In</Text> */}
          </View>
          <View style={styles.form}>
          <Text style={styles.label}>Username</Text>
@@ -59,7 +59,7 @@ import {
      fontWeight: '900',
      color: `#008080`,
      fontStyle: 'italic',
-     paddingHorizontal: 85,
+     textAlign: 'center',
     },
    sectioncode: {
      fontSize: 15,
