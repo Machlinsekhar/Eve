@@ -1,106 +1,108 @@
 import React from "react";
-import { SafeAreaView,TouchableHighlight, Text, StyleSheet, View, TouchableOpacity, Image, Alert, TextInput, Button } from "react-native";
+import { SafeAreaView,TouchableHighlight,ImageBackground, Text, StyleSheet, View, TouchableOpacity, Image, Alert, TextInput, Button } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
   export default function Home(){
     const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
+        <ImageBackground source={require('../assests/home.png')}>
          <View style={styles.sectionview}>
-          <Text style= {styles.sectionTitle}>EVE</Text>
+          <Text style= {styles.sectionTitle}>February 2023</Text>
           <Text style= {styles.sectioncode}> Your body, your data, With Eve {'\n'} you're in control
           </Text>
          </View>
           <View style ={styles.sectionbutton}>
-           <TouchableOpacity  onPress={() => Alert.alert('Logging your period')} style={styles.button}>
+           <TouchableOpacity  onPress={() => navigation.navigate('LogPeriod')} style={styles.button}>
             <Text style ={styles.buttonText}>Log your Period</Text>
            </TouchableOpacity>
            </View>
             <View style ={styles.sectionimage}>
-            <Image source={require('../assests/home.png')} />
+            
             </View>
-            <View  style ={styles.icons}>
-            <TouchableHighlight onPress={() => Alert.alert("Home")}>
-            <Image style ={styles.icon}source={require('../assests/homeicon.png')} />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() =>Alert.alert('Today')}>
-            <Image style ={styles.icon}source={require('../assests/todayicon.png')} />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() =>Alert.alert("Calendar")}>
-            <Image style ={styles.icon}source={require('../assests/calendaricon.png')} />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() =>Alert.alert("Notification")}>
-            <Image style ={styles.icon}source={require('../assests/noticon.png')} />
-            </TouchableHighlight>
-            </View>
+            </ImageBackground>
        </SafeAreaView>
        );
             };
 
 
-const styles = StyleSheet.create({
-   sectionContainer: {
-    paddingVertical: 65,
-    // paddingHorizontal: 24,
-    backgroundColor: '#ffff',
-   },
-
-   sectionTitle: {
-     fontSize: 80,
-     fontWeight: '900',
-     color: `#008080`,
-     fontStyle: 'italic',
-     textAlign: 'center',
-   },
-   sectioncode: {
-     fontSize: 15,
-     color: '#008080',
-     textAlign: 'center',
-     fontWeight: '500'
-   },
-   sectionview: {
-       paddingBottom: 40,
-   },
- 
-   sectionbutton: {
-     paddingLeft: 100,
-     paddingBottom: 40,
-     
-   },
- 
-   button: { 
-    backgroundColor: '#368BC1',
-    borderRadius: 20,
-    width: 200,
-    height: 50,
-    marginTop: 10,
-},
-
-buttonText: {
-  textAlign: 'center',
-  fontSize: 22,
-  color: '#ffffff',
-  paddingTop: 8,
-  fontWeight: '600'
-},
-
-   sectionimage:{
-     height: 320,
-     paddingHorizontal: 100
-   },
-     
-   icons:{
-    flexDirection: 'row',
-    paddingBottom: 9,
-    paddingTop:5,
-    backgroundColor: '#008089',
-   },
-
-   icon:{
-    height: 40,
-    width: 30,
-    padding: 20,
-    marginRight: 30,
-    marginLeft: 30,
-   }
- });
+            const styles = StyleSheet.create({
+              sectionContainer: {
+               flex: 1,
+                backgroundColor: '#BEDCE6'
+                
+              },
+              sectionimage: {
+               flex:1,
+              },
+              sectionTitle: {
+                fontSize: 35,
+                fontWeight: '900',
+                color: `#0F2F5B`,
+                textAlign: 'center',
+                paddingTop: 50,
+                paddingBottom: 30,
+                letterSpacing: 1.25
+               },
+              sectioncode: {
+                fontSize: 21,
+                color: '#0F2F5B',
+                textAlign: 'center',
+                fontWeight: '700',
+                paddingBottom: 20,
+                paddingTop: 220,
+                letterSpacing: 1.25
+              },
+            
+              sectionview: {
+                  paddingBottom: 20,
+              },
+            
+              form: {
+               paddingHorizontal: 20,
+              },
+              
+              input: {
+               backgroundColor: `#c0d1da`,
+               borderRadius: 6,
+               width: 360,
+               marginBottom: 15,
+               borderColor: "#BEDCE6",
+               borderWidth: 2,
+               fontSize: 17,
+               paddingHorizontal: 20,
+               // fontWeight: 200,
+               },
+            
+               label: {
+                color: '#0F2F5B',
+                fontWeight: '600',
+                fontSize: 20
+               },
+            
+              sectionbutton: {
+                alignItems: "center"
+                
+              },
+            
+              button: { 
+                  backgroundColor: '#6359A6',
+                  borderRadius: 6,
+                  width: 360,
+                  height: 45,
+                  marginTop: 25,
+                  
+              },
+            
+              buttonText: {
+                textAlign: 'center',
+                fontSize: 20,
+                color: '#ffffff',
+                paddingTop: 10,
+                fontWeight: '600'
+              },
+              
+             });

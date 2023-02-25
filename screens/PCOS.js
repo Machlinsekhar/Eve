@@ -1,4 +1,5 @@
 import React from 'react';
+import InputSpinner from "react-native-input-spinner";
 import {
     SafeAreaView,
     StyleSheet,
@@ -11,25 +12,31 @@ import {
   } from 'react-native';
   import { useNavigation } from '@react-navigation/native';
 
-  export default function Pregnant(){
+  export default function Cycle(){
     const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
         <ImageBackground source={require('../assests/background.png')} style ={styles.sectionimage}>
-        <Text style={styles.sectioncode}>Are you pregnant?</Text>
+        <Text style={styles.sectioncode}>Do you have any reproductive health disorders (endometriosis
+PCOS,etc)?</Text>
         <View style ={styles.sectionbutton}>
-        <TouchableOpacity  onPress={() => navigation.navigate('DOB')} style={styles.button}>
-        <Text style={styles.buttonText}>No, I’m just here to understand my body better</Text>
+        <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+        <Text style={styles.buttonText}>Yes</Text>
       </TouchableOpacity>
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('DOB')} style={styles.button}>
-        <Text style={styles.buttonText}>No, but i want to be</Text>
+      <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+        <Text style={styles.buttonText}>No</Text>
       </TouchableOpacity>
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('DOB')} style={styles.button}>
-        <Text style={styles.buttonText}>Yes, I am</Text>
+      <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+        <Text style={styles.buttonText}>No, but I used to</Text>
+      </TouchableOpacity>
+      </View>
+      <View style ={styles.sectionbutton}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+        <Text style={styles.buttonText}>i don't know</Text>
       </TouchableOpacity>
       </View>
       </ImageBackground>
@@ -64,6 +71,15 @@ import {
      paddingTop: 220,
      letterSpacing: 1.25
    },
+   sectionend: {
+    fontSize: 21,
+    color: '#0F2F5B',
+    textAlign: 'center',
+    fontWeight: '700',
+    paddingBottom: 20,
+    paddingTop: 30,
+    letterSpacing: 1.25
+  },
 
    sectionview: {
        paddingBottom: 20,

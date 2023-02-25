@@ -10,24 +10,22 @@ import {
   } from 'react-native';
   import { useNavigation } from '@react-navigation/native';
 
-  export default function Info(){
+  export default function Notification () {
     const navigation = useNavigation();
     return (
       <SafeAreaView style ={styles.sectionContainer}>
  
- <ImageBackground source={require('../assests/info.jpg')} style ={styles.sectionimage}>
- <Text style= {styles.sectionTitle}>EVE</Text>
- <View style ={styles.sectionbutton}>
-          <Text style= {styles.sectioncode}>Machlin Carissa Benetta Sebasty</Text>
- <TouchableOpacity  onPress={() => navigation.navigate('Home')} style={styles.button}>
-        <Text style={styles.buttonText}>Welcome</Text>
+    <ImageBackground source={require('../assests/LogPeriod.png')} style ={styles.sectionimage}>
+    <View style ={styles.sectionbutton}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Home')} style={styles.button}>
+        <Text style={styles.buttonText}>Log Your Period</Text>
       </TouchableOpacity>
       </View>
       </ImageBackground>
-      
      </SafeAreaView>
    );
- };
+    }
+
  
  const styles = StyleSheet.create({
    sectionContainer: {
@@ -58,7 +56,7 @@ import {
     borderRadius: 6,
     width: 360,
     height: 45,
-    marginTop: 25,
+    marginTop: 635,
     
 },
  

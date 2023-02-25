@@ -9,37 +9,36 @@ import {
     Alert,
   } from 'react-native';
   import { useNavigation } from '@react-navigation/native';
+import { ImageBackground } from 'react-native';
 
   export default function Start(){
     const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
+        <ImageBackground source={require('../assests/login.png')} style ={styles.sectionimage}>
          <View style={styles.sectionview}>
-          <Text style= {styles.sectionTitle}>EVE</Text>
+          {/* <Text style= {styles.sectionTitle}>EVE</Text>
           <Text style= {styles.sectioncode}>Your body, your data, With Eve {'\n'} you're in control
-          </Text>
+          </Text> */}
          </View>
- <View style ={styles.sectionbutton}>
- <TouchableOpacity  onPress={() => navigation.navigate('SignIn')} style={styles.button}>
-   <Text style={styles.buttonText}>Sign In</Text>
- </TouchableOpacity>
- 
- <TouchableOpacity  onPress={() => Alert.alert('Nahi kiya ab tak :(')}style={styles.button}>
-   <Text style={styles.buttonText}>Register</Text>
- </TouchableOpacity>
- </View>
- <View style ={styles.sectionimage}>
- <Image source={require('../assests/login.png')} />
- </View>
-     </SafeAreaView>
+            <View style ={styles.sectionbutton}>
+            <TouchableOpacity  onPress={() => navigation.navigate('SignIn')} style={styles.button}>
+              <Text style={styles.buttonText}>Sign In</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity  onPress={() => navigation.navigate('Register')}style={styles.button}>
+              <Text style={styles.buttonText}>Register</Text>
+            </TouchableOpacity>
+            </View>
+            </ImageBackground>
+                </SafeAreaView>
    );
  };
  
  const styles = StyleSheet.create({
    sectionContainer: {
-     paddingVertical: 65,
-     paddingHorizontal: 24,
-     backgroundColor: '#008080',
+     backgroundColor: '#BEDCE6',
+     flex: 1,
    },
    sectionTitle: {
      fontSize: 80,
@@ -59,17 +58,18 @@ import {
    },
  
    sectionbutton: {
-     paddingLeft: 70,
-     
-   },
+    alignItems: "center",
+    marginTop: 560,
+  },
  
    button: { 
-       backgroundColor: '#368BC1',
-       borderRadius: 20,
-       width: 200,
-       height: 50,
-       marginTop: 30,
-   },
+    backgroundColor: '#6359A6',
+    borderRadius: 6,
+    width: 360,
+    height: 45,
+    marginTop: 25,
+    
+},
  
    buttonText: {
      textAlign: 'center',
@@ -80,7 +80,7 @@ import {
    },
  
    sectionimage: {
-     height: 293
+    flex:1,
      
    },
      

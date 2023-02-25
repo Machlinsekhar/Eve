@@ -23,22 +23,18 @@ import {
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StoreProvider } from "react-redux";
-import NavigationProvider from './screens/Navigation.js'
 import Start from "./screens/Start";
 import SignIn from "./screens/SignIn";
 import Home from './screens/Home.js';
-import Today from './screens/Today.js'
+import Hello from './screens/Hello.js'
 import Register from './screens/Register.js'
 import Pregnant from "./screens/Pregnant"
 import DOB from "./screens/DOB"
 import Cycle from "./screens/Cycle"
-import Symptoms from "./screens/Symptoms"
-import RepHelDis from "./screens/RepHelDis"
-import Sleep from "./screens/Sleep"
-import MentalHel from "./screens/MentalHel"
-import FitnessGoal from "./screens/FitnessGoal"
+import PCOS from "./screens/PCOS"
 import Loading from "./screens/Loading"
 import Info from "./screens/Info"
+import LogPeriod from "./screens/LogPeriod"
 import { NavigationContainer } from '@react-navigation/native';
 
 
@@ -50,20 +46,17 @@ export default function App () {
     <NavigationContainer>
     <Stack.Navigator>
     <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
-    <Stack.Screen name="Register" component={Register} />
+    <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
     <Stack.Screen name="Info" component={Info} options={{headerShown: false}}/>
-    <Stack.Screen name="Pregnant" component={Pregnant} />
-    <Stack.Screen name="DOB" component={DOB} />
-    <Stack.Screen name="Cycle" component={Cycle} />
-    <Stack.Screen name="Symptoms" component={Symptoms} />
-    <Stack.Screen name="Sleep" component={Sleep} />
-    <Stack.Screen name="MentalHel" component={MentalHel} />
-    <Stack.Screen name="RepHelDis" component={RepHelDis} />
-    <Stack.Screen name="FitnessGoal" component={FitnessGoal} />
-    <Stack.Screen name="Loading" component={Loading} />
-      <Stack.Screen name="Home" component={Home}/>
-      <Stack.Screen name="SignIn" component={SignIn} />
-      {/* <Stack.Screen name="Today" component={Today} /> */}
+    <Stack.Screen name="Pregnant" component={Pregnant} options={{headerShown: false}}/>
+    <Stack.Screen name="DOB" component={DOB}options={{headerShown: false}} />
+    <Stack.Screen name="Cycle" component={Cycle} options={{headerShown: false}}/>
+    <Stack.Screen name="PCOS" component={PCOS} options={{headerShown: false}}/>
+    <Stack.Screen name="Loading" component={Loading} options={{headerShown: false}}/>
+    <Stack.Screen name="Hello" component={Hello} options={{headerShown: false}}/> 
+    <Stack.Screen name="Home" component={Home}  options={{headerShown: false}}/>
+    <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}} />
+    <Stack.Screen name="LogPeriod" component={LogPeriod} options={{headerShown: false}}/>
     </Stack.Navigator>
     </NavigationContainer>
   );

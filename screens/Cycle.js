@@ -1,52 +1,42 @@
 import React from 'react';
+import InputSpinner from "react-native-input-spinner";
 import {
     SafeAreaView,
     StyleSheet,
     Text,
     View,
     TouchableOpacity,
-    Image,
+    ImageBackground,
     Alert,
     TextInput,
   } from 'react-native';
   import { useNavigation } from '@react-navigation/native';
-  import SignIn from './SignIn';
 
-  export default function Pregnant(){
+  export default function Cycle(){
     const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
-        <View style={styles.sectionview}>
-          <Text style= {styles.sectionTitle}>Register</Text>
-          {/* <Text style= {styles.sectioncode}>Register</Text> */}
-         </View>
-         <View style={styles.form}>
-         <Text style={styles.label}>Name</Text>
-         <TextInput
-        style={styles.input}
-        placeholder="Ex: Machlin"
-      />
-       <Text style={styles.label}>Username</Text>
-         <TextInput
-        style={styles.input}
-        placeholder="Ex: abc@gmail.com"
-      />
-        <Text style={styles.label}>Password</Text>
-         <TextInput
-        secureTextEntry={true}
-        style={styles.input}
-        placeholder="Max 8 characters"
-      /> 
+        <ImageBackground source={require('../assests/background.png')} style ={styles.sectionimage}>
+        <Text style={styles.sectioncode}>Is your menstrual cycle regular
+(varies by no more than 7 days)?</Text>
+        <View style ={styles.sectionbutton}>
+        <TouchableOpacity  onPress={() => navigation.navigate('PCOS')} style={styles.button}>
+        <Text style={styles.buttonText}>My cycle is regular</Text>
+      </TouchableOpacity>
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('SignIn')} style={styles.button}>
-        <Text style={styles.buttonText}>Register</Text>
+      <TouchableOpacity  onPress={() => navigation.navigate('PCOS')} style={styles.button}>
+        <Text style={styles.buttonText}>My cycle is irregular</Text>
       </TouchableOpacity>
-      
       </View>
-      <View style ={styles.sectionimage}>
- <Image source={require('../assests/register.png')} />
- </View>
+      <View style ={styles.sectionbutton}>
+      <TouchableOpacity  onPress={() => navigation.navigate('PCOS')} style={styles.button}>
+        <Text style={styles.buttonText}>Got no clue</Text>
+      </TouchableOpacity>
+      </View>
+      <Text style={styles.sectionend}>Wt's your cycle length?</Text>
+      
+      </ImageBackground>
      </SafeAreaView>
 
    );
@@ -55,9 +45,12 @@ import {
  
   const styles = StyleSheet.create({
    sectionContainer: {
-     paddingVertical: 25,
-     paddingHorizontal: 24,
-     backgroundColor: '#ffffff',
+    flex: 1,
+     backgroundColor: '#BEDCE6'
+     
+   },
+   sectionimage: {
+    flex:1,
    },
    sectionTitle: {
      fontSize: 50,
@@ -67,11 +60,23 @@ import {
      textAlign: 'center',
     },
    sectioncode: {
-     fontSize: 15,
-     color: '#ffffff',
+     fontSize: 21,
+     color: '#0F2F5B',
      textAlign: 'center',
-     fontWeight: '500'
+     fontWeight: '700',
+     paddingBottom: 20,
+     paddingTop: 220,
+     letterSpacing: 1.25
    },
+   sectionend: {
+    fontSize: 21,
+    color: '#0F2F5B',
+    textAlign: 'center',
+    fontWeight: '700',
+    paddingBottom: 20,
+    paddingTop: 30,
+    letterSpacing: 1.25
+  },
 
    sectionview: {
        paddingBottom: 20,
@@ -100,30 +105,25 @@ import {
     },
 
    sectionbutton: {
-     paddingLeft: 70,
+     alignItems: "center"
      
    },
  
    button: { 
-       backgroundColor: '#368BC1',
-       borderRadius: 20,
-       width: 200,
-       height: 50,
-       marginTop: 10,
+       backgroundColor: '#6359A6',
+       borderRadius: 6,
+       width: 360,
+       height: 45,
+       marginTop: 25,
+       
    },
  
    buttonText: {
      textAlign: 'center',
-     fontSize: 22,
+     fontSize: 15,
      color: '#ffffff',
-     paddingTop: 8,
+     paddingTop: 10,
      fontWeight: '600'
    },
- 
-   sectionimage: {
-     paddingTop:30,
-     paddingHorizontal: 10,
-     alignItems: 'center',
-   },
-     
+   
   });
