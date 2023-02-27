@@ -35,6 +35,8 @@ import PCOS from "./screens/PCOS"
 import Loading from "./screens/Loading"
 import Info from "./screens/Info"
 import LogPeriod from "./screens/LogPeriod"
+import Entry from "./screens/Entry"
+import Symptoms from "./screens/Symptoms"
 import { NavigationContainer } from '@react-navigation/native';
 
 
@@ -45,6 +47,7 @@ export default function App () {
     return (
     <NavigationContainer>
     <Stack.Navigator>
+    <Stack.Screen name="Symptoms" component={Symptoms}options={{headerShown: false}} />
     <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
     <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
     <Stack.Screen name="Info" component={Info} options={{headerShown: false}}/>
@@ -57,6 +60,8 @@ export default function App () {
     <Stack.Screen name="Home" component={Home}  options={{headerShown: false}}/>
     <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}} />
     <Stack.Screen name="LogPeriod" component={LogPeriod} options={{headerShown: false}}/>
+    <Stack.Screen name="Entry" component={Entry}options={{headerShown: false}} />
+    {/* <Stack.Screen name="Symptoms" component={Symptoms}options={{headerShown: false}} /> */}
     </Stack.Navigator>
     </NavigationContainer>
   );
