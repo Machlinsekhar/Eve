@@ -1,9 +1,9 @@
 import React from "react";
 import { SafeAreaView,TouchableHighlight,ImageBackground, Text, StyleSheet, View, TouchableOpacity, Image, Alert, TextInput, Button } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 
   export default function Home(){
     const navigation = useNavigation();
