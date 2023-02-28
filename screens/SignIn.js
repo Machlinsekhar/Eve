@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,7 +13,10 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Home from './Home';
 import { ImageBackground } from 'react-native';
-
+axios.get('http://172.22.58.1:5000/get-entries').then(resp => {
+    console.log(resp.data);
+})
+.catch((error => console.log(error)));
 export default function SignIn() {
   const navigation = useNavigation();
   return (
@@ -45,6 +49,7 @@ export default function SignIn() {
           <Text style={styles.endline}>Don't have an account?</Text>
           <Text style={styles.link} onPress={() => navigation.navigate('Register')}>Register</Text>
         </View>
+        
       </ImageBackground>
     </SafeAreaView>
 
