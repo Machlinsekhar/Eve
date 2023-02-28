@@ -17,7 +17,7 @@ import {
  
     <ImageBackground source={require('../assests/LogPeriod.png')} style ={styles.sectionimage}>
     <View style ={styles.sectionbutton}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Entry')} style={styles.button}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Calendar')} style={styles.button}>
         <Text style={styles.buttonText}>Log Your Period</Text>
       </TouchableOpacity>
       </View>

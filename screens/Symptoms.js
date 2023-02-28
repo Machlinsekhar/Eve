@@ -20,23 +20,23 @@ import {
           <Text style={styles.sectionTitle}>Symptoms</Text>
         </View>
         <View style={styles.sectionend}>
-        <TouchableOpacity  onPress={() => navigation.navigate('/')} style={styles.sectionsys}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Start')} style={styles.sectionsys}>
               <ImageBackground source={require('../assests/flow.png')}>
               <Text style={styles.sym} ></Text>
               </ImageBackground>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={() => navigation.navigate('/')} style={styles.sectionsys}>
+            <TouchableOpacity  onPress={() => navigation.navigate('Start')} style={styles.sectionsys}>
               <ImageBackground source={require('../assests/discharge.png')}>
               <Text style={styles.sym} ></Text>
               </ImageBackground>
             </TouchableOpacity>
             </View><View style={styles.sectionend}>
-            <TouchableOpacity  onPress={() => navigation.navigate('/')} style={styles.sectionsys}>
+            <TouchableOpacity  onPress={() => navigation.navigate('Start')} style={styles.sectionsys}>
               <ImageBackground source={require('../assests/pain.png')}>
               <Text style={styles.sym} ></Text>
               </ImageBackground>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={() => navigation.navigate('/')} style={styles.sectionsys}>
+            <TouchableOpacity  onPress={() => navigation.navigate('Start')} style={styles.sectionsys}>
               <ImageBackground source={require('../assests/mood.png')}>
               <Text style={styles.sym} ></Text>
               </ImageBackground>
@@ -46,13 +46,10 @@ import {
      </SafeAreaView>
    );
     }
-
- 
     const styles = StyleSheet.create({
         sectionContainer: {
           flex: 1,
           backgroundColor: '#BEDCE6'
-      
         },
         sectionimage: {
           flex: 1,
@@ -79,7 +76,6 @@ import {
         sectionview: {
           paddingBottom: 20,
         },
-
         sectionsys: {
             backgroundColor: '#6359A6',
             borderRadius: 10,
