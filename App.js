@@ -37,6 +37,7 @@ import Info from "./screens/Info"
 import LogPeriod from "./screens/LogPeriod"
 import Entry from "./screens/Entry"
 import Symptoms from "./screens/Symptoms"
+import Calendar from "./screens/Calendar"
 import { NavigationContainer } from '@react-navigation/native';
 
 
@@ -47,7 +48,11 @@ export default function App () {
     return (
     <NavigationContainer>
     <Stack.Navigator>
+<<<<<<< HEAD
     {/* <Stack.Screen name="Symptoms" component={Symptoms}options={{headerShown: false}} /> */}
+=======
+     {/* <Stack.Screen name="Calendar" component={Calendar}options={{headerShown: false}} />  */}
+>>>>>>> 0b786f5bfc468f13878db151e77f41f562cb6bc3
     <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
     <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
     <Stack.Screen name="Info" component={Info} options={{headerShown: false}}/>
@@ -62,6 +67,10 @@ export default function App () {
     <Stack.Screen name="LogPeriod" component={LogPeriod} options={{headerShown: false}}/>
     <Stack.Screen name="Entry" component={Entry}options={{headerShown: false}} />
     <Stack.Screen name="Symptoms" component={Symptoms}options={{headerShown: false}} />
+<<<<<<< HEAD
+=======
+    <Stack.Screen name="Calendar" component={Calendar}options={{headerShown: false}} /> 
+>>>>>>> 0b786f5bfc468f13878db151e77f41f562cb6bc3
     </Stack.Navigator>
     </NavigationContainer>
   );

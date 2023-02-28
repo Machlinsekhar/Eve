@@ -20,6 +20,14 @@ import {
         <ImageBackground source={require('../assests/background.png')} style ={styles.sectionimage}>
         <Text style={styles.sectiontitle}>What year were you born?</Text>
         <Text style={styles.sectioncode}>Enter your {'\n'} Date of birth</Text>
+        <View style={styles.form}>
+      
+          <TextInput
+            style={styles.input}
+            placeholder="Ex: DD-MM-YYYY"
+          />
+         
+        </View>
         
         <View style ={styles.sectionbutton}>
         <TouchableOpacity  onPress={() => navigation.navigate('Cycle')} style={styles.button}>
@@ -74,22 +82,24 @@ import {
    },
    
    input: {
-    backgroundColor: `#add8e6`,
-    borderRadius: 20,
-    width: 300,
+    backgroundColor: `#c0d1da`,
+    borderRadius: 6,
+    width: 360,
     marginBottom: 15,
-    borderColor: "#368BC1",
+    borderColor: "#BEDCE6",
     borderWidth: 2,
     fontSize: 17,
     paddingHorizontal: 20,
-    // fontWeight: 200,
-    },
+  },
 
-    label: {
-     color: '#008080',
-     fontWeight: '600',
-     fontSize: 20
-    },
+  label: {
+    color: '#0F2F5B',
+    fontWeight: '600',
+    fontSize: 20,
+    paddingTop: 10,
+    paddingBottom: 10
+ },
+
 
    sectionbutton: {
      alignItems: "center"
