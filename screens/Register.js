@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,10 +10,68 @@ import {
   TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import SignIn from './SignIn';
+import axios from 'axios';
+import { APIs } from '../config/APIs';
+
 
 export default function Register() {
   const navigation = useNavigation();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [name, setName] = useState();
+
+  function handleUsernameChange(text) {
+    setUsername(text)
+  }
+
+  function handlePasswordChange(text) {
+    setPassword(text);
+  }
+  
+  function handleNameChange(text) {
+    setName(text);
+  }
+
+  function onSubmit() {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('username', username);
+    formData.append('password', password);
+    
+    console.log("Test main")
+    // axios
+    //   .post('http://172.22.58.1:5000/signup', formData)
+    //   .then(resp => {
+    //     console.log(resp.data);
+    //   })
+    //   .catch(error => console.err(error));
+      fetch(APIs.signup, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        credentials: "include", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "multipart/form-data",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        body: formData, // body data type must match "Content-Type" header
+      }).then((res) => {
+      return res.text()
+    }).then((response) => {
+        console.log(response)
+    });
+    navigation.navigate('Hello')
+  }
+
+  useEffect(() => {
+    console.log("axios  ", axios)
+    axios.get('http://172.22.58.1:5000/get-entries').then(resp => {
+        console.log(resp.data);
+      })
+      .catch(error => console.err(error));
+      console.log("hola");
+  }, [])
+
   return (
     <SafeAreaView style={styles.sectionContainer} >
       <ImageBackground source={require('../assests/signin.png')} style={styles.sectionimage}>
@@ -25,21 +83,24 @@ export default function Register() {
           <TextInput
             style={styles.input}
             placeholder="Ex: Machlin"
+            onChangeText={handleNameChange}
           />
           <Text style={styles.label}>Username</Text>
           <TextInput
             style={styles.input}
             placeholder="Ex: abc@gmail.com"
+            onChangeText={handleUsernameChange}
           />
           <Text style={styles.label}>Password</Text>
           <TextInput
             secureTextEntry={true}
             style={styles.input}
             placeholder="Max 8 characters"
+            onChangeText={handlePasswordChange}
           />
         </View>
         <View style={styles.sectionbutton}>
-          <TouchableOpacity onPress={() => navigation.navigate('Hello')} style={styles.button}>
+          <TouchableOpacity onPress={onSubmit} style={styles.button}>
             <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
           <View style={styles.sectionend}>

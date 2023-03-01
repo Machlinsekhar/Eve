@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import Home from './Home';
 import { ImageBackground } from 'react-native';
 import { APIs } from '../config/APIs';
+import Register from './Register';
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -34,34 +35,41 @@ export default function SignIn() {
   }
 
   function onSubmit() {
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('password', password);
-    formData.append('username', username);
-    console.log("Test main")
-    // axios
-    //   .post('http://172.22.58.1:5000/signup', formData)
-    //   .then(resp => {
-    //     console.log(resp.data);
-    //   })
-    //   .catch(error => console.err(error));
-      fetch(APIs.signup, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        credentials: "include", // include, *same-origin, omit
+    const form = {
+      email: document.querySelector("#signin-email"),
+      password: document.querySelector("#signin-password"),
+      submit: document.querySelector("#signin-btn-submit"),
+      name: document.getElementById("form-messages"),
+    };
+    let button = form.submit.addEventListener("click", (e) => {
+      e.preventDefault();
+      const login = "https://ffcc-app.herokuapp.com/user/login";
+    
+      fetch(login, {
+        method: "POST",
         headers: {
-          "Content-Type": "multipart/form-data",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
         },
-        redirect: "follow", // manual, *follow, error
-        body: formData, // body data type must match "Content-Type" header
-      }).then((res) => {
-      return res.text()
-    }).then((response) => {
-        console.log(response)
-    });
-    navigation.navigate('Info')
-  }
+        body: JSON.stringify({
+          email: form.email.value,
+          password: form.password.value,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // code here //
+          if (data.error) {
+            alert("Error Password or Username"); /*displays error message*/
+          } else {
+            navigation.navigate('Info')/*opens the target page while Id & password matches*/
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });}
 
   useEffect(() => {
     console.log("axios  ", axios)
@@ -92,7 +100,7 @@ export default function SignIn() {
           <TextInput
             style={styles.input}
             placeholder="Enter your name"
-            onChangeText={handlePasswordChange}
+            onChangeText={handleNameChange}
           />
           <Text style={styles.label}>Password</Text>
           <TextInput
@@ -113,7 +121,7 @@ export default function SignIn() {
           <Text style={styles.endline}>Don't have an account?</Text>
           <Text
             style={styles.link}
-            onPress={onSubmit}>
+            onPress={() => navigation.navigate('Register')}>
             Register
           </Text>
         </View>

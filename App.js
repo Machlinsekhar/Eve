@@ -38,6 +38,11 @@ import LogPeriod from "./screens/LogPeriod"
 import Entry from "./screens/Entry"
 import Symptoms from "./screens/Symptoms"
 import Calendar from "./screens/Calendar"
+import Modal from "./screens/Modal"
+import Mood from "./screens/Mood"
+import Flow from "./screens/Flow"
+import Pain from "./screens/Pain"
+import Discharge from "./screens/Discharge"
 import { NavigationContainer } from '@react-navigation/native';
 
 
@@ -48,7 +53,7 @@ export default function App () {
     return (
     <NavigationContainer>
     <Stack.Navigator>
-     {/* <Stack.Screen name="Calendar" component={Calendar}options={{headerShown: false}} />  */}
+    {/* <Stack.Screen name="Flow" component={Flow}options={{headerShown: false}} /> */}
     <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
     <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
     <Stack.Screen name="Info" component={Info} options={{headerShown: false}}/>
@@ -63,6 +68,11 @@ export default function App () {
     <Stack.Screen name="LogPeriod" component={LogPeriod} options={{headerShown: false}}/>
     <Stack.Screen name="Entry" component={Entry}options={{headerShown: false}} />
     <Stack.Screen name="Symptoms" component={Symptoms}options={{headerShown: false}} />
+    {/* <Stack.Screen name="Flow" component={Flow}options={{headerShown: false}} />
+    <Stack.Screen name="Modal" component={Modal}options={{headerShown: false}} />
+    <Stack.Screen name="Discharge" component={Discharge}options={{headerShown: false}} />
+    <Stack.Screen name="Pain" component={Pain}options={{headerShown: false}} />
+    <Stack.Screen name="Mood" component={Mood}options={{headerShown: false}} /> */}
     <Stack.Screen name="Calendar" component={Calendar}options={{headerShown: false}} />
     </Stack.Navigator>
     </NavigationContainer>
