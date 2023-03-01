@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   SafeAreaView,
@@ -13,15 +13,55 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Home from './Home';
 import { ImageBackground } from 'react-native';
-axios.get('http://172.22.58.1:5000/get-entries').then(resp => {
-    console.log(resp.data);
-})
-.catch((error => console.log(error)));
+import { APIs } from '../config/APIs';
+
 export default function SignIn() {
   const navigation = useNavigation();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [name, setName] = useState();
+
+  function handleUsernameChange(text) {
+    setUsername(text)
+  }
+
+  function handlePasswordChange(text) {
+    setPassword(text);
+  }
+  
+  function handleNameChange(text) {
+    setName(text);
+  }
+
+  function onSubmit() {
+    // const formData = new FormData();
+    // formData.append('name', name);
+    // formData.append('password', password);
+    // formData.append('username', username);
+    // console.log("Test main")
+    // axios
+    //   .post('http://172.22.58.1:5000/signup', formData)
+    //   .then(resp => {
+    //     console.log(resp.data);
+    //   })
+    //   .catch(error => console.err(error));
+    // navigation.navigate('Register')
+  }
+
+  useEffect(() => {
+    console.log("axios  ", axios)
+    axios.get('http://172.22.58.1:5000/get-entries').then(resp => {
+        console.log(resp.data);
+      })
+      .catch(error => console.err(error));
+      console.log("hola");
+  }, [])
+
   return (
-    <SafeAreaView style={styles.sectionContainer} >
-      <ImageBackground source={require('../assests/signin.png')} style={styles.sectionimage}>
+    <SafeAreaView style={styles.sectionContainer}>
+      <ImageBackground
+        source={require('../assests/signin.png')}
+        style={styles.sectionimage}>
         <View style={styles.sectionview}>
           <Text style={styles.sectionTitle}>Welcome Back !</Text>
           {/* <Text style= {styles.sectioncode}>Sign In</Text> */}
@@ -31,28 +71,39 @@ export default function SignIn() {
           <TextInput
             style={styles.input}
             placeholder="Ex: abc@gmail.com"
+            onChangeText={handleUsernameChange}
+          />
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your name"
+            onChangeText={handlePasswordChange}
           />
           <Text style={styles.label}>Password</Text>
           <TextInput
             secureTextEntry={true}
             style={styles.input}
             placeholder="Max 8 characters"
+            onChangeText={handlePasswordChange}
           />
         </View>
         <View style={styles.sectionbutton}>
-          <TouchableOpacity onPress={() => navigation.navigate('Info')} style={styles.button}>
+          <TouchableOpacity
+            onPress={onSubmit}
+            style={styles.button}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
-
         </View>
         <View style={styles.sectionend}>
           <Text style={styles.endline}>Don't have an account?</Text>
-          <Text style={styles.link} onPress={() => navigation.navigate('Register')}>Register</Text>
+          <Text
+            style={styles.link}
+            onPress={onSubmit}>
+            Register
+          </Text>
         </View>
-        
       </ImageBackground>
     </SafeAreaView>
-
   );
 
 };
