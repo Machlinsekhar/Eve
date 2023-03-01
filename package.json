@@ -27,6 +27,7 @@
     "react-native-gesture-handler": "^2.9.0",
     "react-native-input-spinner": "^1.7.13",
     "react-native-linear-gradient": "^2.6.2",
+    "react-native-modal": "^13.0.1",
     "react-native-modal-datetime-picker": "^14.0.1",
     "react-native-progress": "^5.0.0",
     "react-native-range-datepicker": "^2.2.0",

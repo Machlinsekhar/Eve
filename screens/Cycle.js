@@ -35,6 +35,14 @@ import {
       </TouchableOpacity>
       </View>
       <Text style={styles.sectionend}>Wt's your cycle length?</Text>
+      <View style={styles.form}>
+      
+      <TextInput
+        style={styles.input}
+        placeholder="Ex: DD-MM-YYYY"
+      />
+     
+    </View>
       
       </ImageBackground>
      </SafeAreaView>
@@ -87,16 +95,15 @@ import {
    },
    
    input: {
-    backgroundColor: `#add8e6`,
-    borderRadius: 20,
-    width: 300,
+    backgroundColor: `#c0d1da`,
+    borderRadius: 6,
+    width: 360,
     marginBottom: 15,
-    borderColor: "#368BC1",
+    borderColor: "#BEDCE6",
     borderWidth: 2,
     fontSize: 17,
     paddingHorizontal: 20,
-    // fontWeight: 200,
-    },
+  },
 
     label: {
      color: '#008080',

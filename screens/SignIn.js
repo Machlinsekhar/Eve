@@ -34,18 +34,33 @@ export default function SignIn() {
   }
 
   function onSubmit() {
-    // const formData = new FormData();
-    // formData.append('name', name);
-    // formData.append('password', password);
-    // formData.append('username', username);
-    // console.log("Test main")
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('password', password);
+    formData.append('username', username);
+    console.log("Test main")
     // axios
     //   .post('http://172.22.58.1:5000/signup', formData)
     //   .then(resp => {
     //     console.log(resp.data);
     //   })
     //   .catch(error => console.err(error));
-    // navigation.navigate('Register')
+      fetch(APIs.signup, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        credentials: "include", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "multipart/form-data",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        body: formData, // body data type must match "Content-Type" header
+      }).then((res) => {
+      return res.text()
+    }).then((response) => {
+        console.log(response)
+    });
+    navigation.navigate('Info')
   }
 
   useEffect(() => {
@@ -205,4 +220,4 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   },
 
-});
+})

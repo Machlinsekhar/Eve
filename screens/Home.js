@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
         <ImageBackground source={require('../assests/home.png')}>
          <View style={styles.sectionview}>
           <Text style= {styles.sectionTitle}>February 2023</Text>
-          <Text style= {styles.sectioncode}> Your body, your data, With Eve {'\n'} you're in control
+          <Text style= {styles.sectioncode}> Next Month Prediction {'\n'} 26th March 2023
           </Text>
          </View>
           <View style ={styles.sectionbutton}>
@@ -53,7 +53,7 @@ import { useNavigation } from '@react-navigation/native';
                 textAlign: 'center',
                 fontWeight: '700',
                 paddingBottom: 20,
-                paddingTop: 220,
+                paddingTop: 230,
                 letterSpacing: 1.25
               },
             
@@ -93,7 +93,7 @@ import { useNavigation } from '@react-navigation/native';
                   borderRadius: 6,
                   width: 360,
                   height: 45,
-                  marginTop: 25,
+                  marginTop: 255,
                   
               },
             
