@@ -11,17 +11,17 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-export default function Loading() {
+export default function Welcome() {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Home');
+      navigation.navigate('Info');
     }, 2000)
   }, [])
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <ImageBackground
-        source={require('../assests/loading.png')}
+        source={require('../assests/welcome.png')}
         style={styles.sectionimage}>
         <Text style={styles.sectioncode}>
           Thank you for your valuable information

@@ -160,6 +160,7 @@ const RangeDatepicker = props => {
     formData.append('symptoms', "[]");
     Utils.post(APIs.setEntries, formData).then((response) => {
       console.log(response.data)
+      navigation.navigate('Symptoms')
     });
   }
 

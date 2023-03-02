@@ -11,8 +11,8 @@ import { useNavigation } from '@react-navigation/native';
       <SafeAreaView style= {styles.sectionContainer} >
         <ImageBackground source={require('../assests/home.png')}>
          <View style={styles.sectionview}>
-          <Text style= {styles.sectionTitle}>February 2023</Text>
-          <Text style= {styles.sectioncode}> Next Month Prediction {'\n'} 26th March 2023
+          <Text style= {styles.sectionTitle}>March 2023</Text>
+          <Text style= {styles.sectioncode}> Next Month Prediction {'\n'} 26th April 2023
           </Text>
          </View>
           <View style ={styles.sectionbutton}>

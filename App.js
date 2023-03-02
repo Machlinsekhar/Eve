@@ -23,6 +23,7 @@ import LogPeriod from './screens/LogPeriod';
 import Entry from './screens/Entry';
 import Symptoms from './screens/Symptoms';
 import Calendar from './screens/Calendar';
+import Welcome from './screens/Welcome';
 import HomeRegister1 from './screens/HomeRegister1.js';
 import AuthMiddleware from './screens/AuthMiddleware';
 import {NavigationContainer} from '@react-navigation/native';
@@ -34,7 +35,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Calendar" component={Calendar}options={{headerShown: false}} />  */}
         <Stack.Screen
           name="AuthMiddleware"
           component={AuthMiddleware}
@@ -73,6 +73,11 @@ export default function App() {
         <Stack.Screen
           name="PCOS"
           component={PCOS}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
           options={{headerShown: false}}
         />
         <Stack.Screen

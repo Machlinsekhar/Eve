@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -12,15 +12,15 @@ import {
 
   export default function Hello () {
     const navigation = useNavigation();
+    useEffect(() => {
+      setTimeout(() => {
+        navigation.navigate('Pregnant');
+      }, 2000)
+    }, [])
     return (
       <SafeAreaView style ={styles.sectionContainer}>
  
     <ImageBackground source={require('../assests/hello.png')} style ={styles.sectionimage}>
-    <View style ={styles.sectionbutton}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Pregnant')} style={styles.button}>
-        <Text style={styles.buttonText}>Come On!</Text>
-      </TouchableOpacity>
-      </View>
       </ImageBackground>
      </SafeAreaView>
    );

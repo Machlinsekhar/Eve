@@ -12,7 +12,7 @@ import {
   } from 'react-native';
   import { useNavigation } from '@react-navigation/native';
 
-  export default function Cycle(){
+  export default function PCOS(){
     const navigation = useNavigation();
     return (
       <SafeAreaView style= {styles.sectionContainer} >
@@ -20,22 +20,22 @@ import {
         <Text style={styles.sectioncode}>Do you have any reproductive health disorders (endometriosis
 PCOS,etc)?</Text>
         <View style ={styles.sectionbutton}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Welcome')} style={styles.button}>
         <Text style={styles.buttonText}>Yes</Text>
       </TouchableOpacity>
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Welcome')} style={styles.button}>
         <Text style={styles.buttonText}>No</Text>
       </TouchableOpacity>
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Welcome')} style={styles.button}>
         <Text style={styles.buttonText}>No, but I used to</Text>
       </TouchableOpacity>
       </View>
       <View style ={styles.sectionbutton}>
-      <TouchableOpacity  onPress={() => navigation.navigate('Loading')} style={styles.button}>
+      <TouchableOpacity  onPress={() => navigation.navigate('Welcome')} style={styles.button}>
         <Text style={styles.buttonText}>i don't know</Text>
       </TouchableOpacity>
       </View>

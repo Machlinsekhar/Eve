@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -12,15 +12,17 @@ import {
 
   export default function LogPeriod () {
     const navigation = useNavigation();
+
+    useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('Calendar');
+    }, 2000)
+  }, [])
+
     return (
       <SafeAreaView style ={styles.sectionContainer}>
  
     <ImageBackground source={require('../assests/LogPeriod.png')} style ={styles.sectionimage}>
-    <View style ={styles.sectionbutton}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Calendar')} style={styles.button}>
-        <Text style={styles.buttonText}>Log Your Period</Text>
-      </TouchableOpacity>
-      </View>
       </ImageBackground>
      </SafeAreaView>
    );

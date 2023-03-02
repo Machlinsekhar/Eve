@@ -16,7 +16,7 @@ export default function Info() {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Home');
+      navigation.navigate('HomeRegister1');
     }, 2000)
   }, [])
 
