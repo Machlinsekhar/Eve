@@ -14,19 +14,6 @@ import {APIs} from '../config/APIs';
 export default function Info() {
   const navigation = useNavigation();
 
-  useEffect(() => {
-    fetch(APIs.getEntries, {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-    }).then(async res => {
-      if (res.status >= 200 && res.status < 300) {
-        const response = await res.text();
-        console.log(response);
-      }
-    });
-  }, []);
-
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <ImageBackground

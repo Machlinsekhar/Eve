@@ -14,6 +14,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { APIs } from '../config/APIs';
+import Utils from '../utils/Utils';
 
 export default function Cycle() {
   const navigation = useNavigation();
@@ -47,12 +48,15 @@ export default function Cycle() {
   }
   function Irreg() {
     console.log("Test main")
-    axios.post(APIs.getEntries, {
-      value: 'My cycle is irregular'
-    })
+    Utils.get(APIs.getEntries)
       .then(function (response) {
-        console.log(response);
-
+        if (response.status >= 400 && response.status < 500) {
+          navigation.navigate('Start');
+          return;
+        }
+        if (response.status >= 200 && response.status < 300) {
+          navigation.navigate('Info');
+        }
       })
       .catch(function (error) {
         console.log(error);
