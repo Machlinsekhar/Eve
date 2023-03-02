@@ -11,6 +11,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {APIs} from '../config/APIs';
+import Utils from '../utils/Utils';
 
 export default function Register() {
   const navigation = useNavigation();
@@ -23,21 +24,16 @@ export default function Register() {
     formData.append('name', name);
     formData.append('password', password);
     formData.append('email', username);
-    fetch(APIs.signup, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: formData,
-    }).then(async res => {
-      if (res.status >= 200 && res.status < 300) {
-        const response = await res.text();
-        console.log(response);
+    Utils.post(APIs.signup, formData).then(response => {
+      if (response.status >= 400 && response.status < 500) {
+        navigation.navigate('Start');
+        return;
+      }
+      if (response.status >= 200 && response.status < 300) {
+        console.log(response.data);
+        navigation.navigate('Info');
       }
     });
-    navigation.navigate('Info');
   }
 
   function handleUsernameChange(text) {

@@ -39,7 +39,7 @@ import Entry from './screens/Entry';
 import Symptoms from './screens/Symptoms';
 import Calendar from './screens/Calendar';
 import HomeRegister1 from './screens/HomeRegister1.js';
-// import AuthMiddleware from './screens/AuthMiddleware';
+import AuthMiddleware from './screens/AuthMiddleware';
 import {NavigationContainer} from '@react-navigation/native';
 
 
@@ -50,11 +50,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {/* <Stack.Screen name="Calendar" component={Calendar}options={{headerShown: false}} />  */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="AuthMiddleware"
           component={AuthMiddleware}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="Start"
           component={Start}
