@@ -7,7 +7,7 @@ import Utils from '../utils/Utils';
 function AuthMiddleware() {
   const navigation = useNavigation();
   useEffect(() => {
-    Utils.get(APIs.getEntries).then(response => {
+    Utils.get(APIs.profile).then(response => {
       console.log("Auth middleware  ",response)
       if (response.status >= 400 && response.status < 500) {
         navigation.navigate('Start');
