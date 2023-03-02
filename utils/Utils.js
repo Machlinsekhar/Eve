@@ -15,7 +15,7 @@ const Utils = {
     });
     const response = {
       status: res.status,
-      data: await res.json(),
+      data: await res.text(),
     };
     return response;
   },
@@ -27,7 +27,7 @@ const Utils = {
     });
     const response = {
         status: res.status,
-        data: await res.json()
+        data: await res.text()
     };
     return response
   },

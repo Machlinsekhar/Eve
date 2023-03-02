@@ -1,296 +1,345 @@
-
-'use strict'
-import React, { useEffect, useState } from 'react';
+'use strict';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {
-  Text,
-  View,
-  FlatList,
-  StyleSheet,
-  Button,
-} from 'react-native';
+import {Text, View, FlatList, StyleSheet, Button} from 'react-native';
 import Month from './Month';
 // import styles from './styles';
-import { dayJsMod } from './Helper';
-import { useNavigation } from '@react-navigation/native';
+import {dayJsMod} from './Helper';
+import {useNavigation} from '@react-navigation/native';
+import {APIs} from '../config/APIs';
+import Utils from '../utils/Utils';
 
-const RangeDatepicker = (props) => {
-	const [startDate, setStartDate] = useState(props.startDate && dayJsMod(props.startDate, 'YYYYMMDD'));
-	const [untilDate, setUntilDate] = useState(props.untilDate && dayJsMod(props.untilDate, 'YYYYMMDD'));
-	const [availableDates, setAvailableDates] = useState(props.availableDates || null);
+const RangeDatepicker = props => {
+  const [startDate, setStartDate] = useState(
+    props.startDate && dayJsMod(props.startDate, 'YYYYMMDD'),
+  );
+  const [untilDate, setUntilDate] = useState(
+    props.untilDate && dayJsMod(props.untilDate, 'YYYYMMDD'),
+  );
+  const [availableDates, setAvailableDates] = useState(
+    props.availableDates || null,
+  );
 
-	useEffect(() => {
-		setAvailableDates(props.availableDates)
-	}, [props.availableDates])
-	
-	const onSelectDate = (date) => {
-		let tempStartDate = null;
-		let tempUntilDate = null;
-		// console.log('startDate', startDate);
-		// console.log('untilDate', untilDate);
-		
-		if(startDate && !untilDate)
-		{
-			if(date.format('YYYYMMDD') < startDate.format('YYYYMMDD') || isInvalidRange(date)){
-				// console.log(1);
-				tempStartDate = date;
-			}
-			else if(date.format('YYYYMMDD') > startDate.format('YYYYMMDD')){
-				// console.log(2);
-				tempStartDate = startDate;
-				tempUntilDate = date;
-			}
-			else{
-				// console.log(3);
-				tempStartDate = null;
-				tempUntilDate = null;
-			}
-		}
-		else if(!isInvalidRange(date)) {
-				// console.log(4);
-				tempStartDate = date;
-		}
-		else {
-				// console.log(5);
-			tempStartDate = null;
-			tempUntilDate = null;
-		}
+  useEffect(() => {
+    setAvailableDates(props.availableDates);
+  }, [props.availableDates]);
 
-		setStartDate(tempStartDate);
-		setUntilDate(tempUntilDate);
-		props.onSelect(tempStartDate, tempUntilDate);
-	}
+  const onSelectDate = date => {
+    let tempStartDate = null;
+    let tempUntilDate = null;
+    // console.log('startDate', startDate);
+    // console.log('untilDate', untilDate);
 
-	const isInvalidRange = (date) => {
-		if(availableDates && availableDates.length > 0){
-			//select endDate condition
-			if(startDate && !untilDate) {
-				for(let i = startDate.format('YYYYMMDD'); i <= date.format('YYYYMMDD'); i = dayJsMod(i, 'YYYYMMDD').add(1, 'days').format('YYYYMMDD')){
-					if(availableDates.indexOf(i) == -1 && startDate.format('YYYYMMDD') != i)
-						return true;
-				}
-			}
-			//select startDate condition
-			else if(availableDates.indexOf(date.format('YYYYMMDD')) == -1){
-				return true;
-			}
-		}
+    if (startDate && !untilDate) {
+      if (
+        date.format('YYYYMMDD') < startDate.format('YYYYMMDD') ||
+        isInvalidRange(date)
+      ) {
+        // console.log(1);
+        tempStartDate = date;
+      } else if (date.format('YYYYMMDD') > startDate.format('YYYYMMDD')) {
+        // console.log(2);
+        tempStartDate = startDate;
+        tempUntilDate = date;
+      } else {
+        // console.log(3);
+        tempStartDate = null;
+        tempUntilDate = null;
+      }
+    } else if (!isInvalidRange(date)) {
+      // console.log(4);
+      tempStartDate = date;
+    } else {
+      // console.log(5);
+      tempStartDate = null;
+      tempUntilDate = null;
+    }
 
-		return false;
-	}
+    setStartDate(tempStartDate);
+    setUntilDate(tempUntilDate);
+    props.onSelect(tempStartDate, tempUntilDate);
+  };
 
-	const getMonthStack = () => {
-		let res = [];
-		const { maxMonth, initialMonth, isHistorical } = props;
-		let initMonth = dayJsMod();
-		if(initialMonth && initialMonth != '')
-			initMonth = dayJsMod(initialMonth, 'YYYYMM');
+  const isInvalidRange = date => {
+    if (availableDates && availableDates.length > 0) {
+      //select endDate condition
+      if (startDate && !untilDate) {
+        for (
+          let i = startDate.format('YYYYMMDD');
+          i <= date.format('YYYYMMDD');
+          i = dayJsMod(i, 'YYYYMMDD').add(1, 'days').format('YYYYMMDD')
+        ) {
+          if (
+            availableDates.indexOf(i) == -1 &&
+            startDate.format('YYYYMMDD') != i
+          )
+            return true;
+        }
+      }
+      //select startDate condition
+      else if (availableDates.indexOf(date.format('YYYYMMDD')) == -1) {
+        return true;
+      }
+    }
 
-		for(let i = 0; i < maxMonth; i++){
-			res.push(
-        !isHistorical ? (
-          initMonth.clone().add(i, 'month').format('YYYYMM')
-        ) : (
-          initMonth.clone().subtract(i, 'month').format('YYYYMM')
-        )
+    return false;
+  };
+
+  const getMonthStack = () => {
+    let res = [];
+    const {maxMonth, initialMonth, isHistorical} = props;
+    let initMonth = dayJsMod();
+    if (initialMonth && initialMonth != '')
+      initMonth = dayJsMod(initialMonth, 'YYYYMM');
+
+    for (let i = 0; i < maxMonth; i++) {
+      res.push(
+        !isHistorical
+          ? initMonth.clone().add(i, 'month').format('YYYYMM')
+          : initMonth.clone().subtract(i, 'month').format('YYYYMM'),
       );
-		}
+    }
 
-		return res;
-	}
+    return res;
+  };
 
-	const onReset = () => {
-		setStartDate(null);
-		setUntilDate(null);
+  const onReset = () => {
+    setStartDate(null);
+    setUntilDate(null);
 
-		props.onSelect(null, null);
-	}
+    props.onSelect(null, null);
+  };
   const navigation = useNavigation();
   // const log = () => {
   //   {onPress={handleConfirmDate}}
   //   {onPress={() => navigation.navigate("Symptoms")}}
   // }
 
-	const handleConfirmDate = () => {
-		props.onConfirm && props.onConfirm(startDate,untilDate);
-	}
+  const handleConfirmDate = () => {
+    props.onConfirm && props.onConfirm(startDate, untilDate);
+  };
 
-	const handleRenderRow = (month, index) => {
-		const { selectedBackgroundColor, selectedTextColor, todayColor, ignoreMinDate, minDate, maxDate } = props;
-		if(availableDates && availableDates.length > 0){
-			availableDates = availableDates.filter(function(d){
-				if(d.indexOf(month) >= 0)
-					return true;
-			});
-		}
+  const handleRenderRow = (month, index) => {
+    const {
+      selectedBackgroundColor,
+      selectedTextColor,
+      todayColor,
+      ignoreMinDate,
+      minDate,
+      maxDate,
+    } = props;
+    if (availableDates && availableDates.length > 0) {
+      availableDates = availableDates.filter(function (d) {
+        if (d.indexOf(month) >= 0) return true;
+      });
+    }
 
-		return (
-			<Month
-				onSelectDate={onSelectDate}
-				startDate={startDate}
-				untilDate={untilDate}
-				availableDates={availableDates}
-				minDate={minDate ? dayJsMod(minDate, 'YYYYMMDD') : minDate}
-				maxDate={maxDate ? dayJsMod(maxDate, 'YYYYMMDD') : maxDate}
-				ignoreMinDate={ignoreMinDate}
-				dayProps={{selectedBackgroundColor, selectedTextColor, todayColor}}
-				month={month} />
-		)
-	}
+    return (
+      <Month
+        onSelectDate={onSelectDate}
+        startDate={startDate}
+        untilDate={untilDate}
+        availableDates={availableDates}
+        minDate={minDate ? dayJsMod(minDate, 'YYYYMMDD') : minDate}
+        maxDate={maxDate ? dayJsMod(maxDate, 'YYYYMMDD') : maxDate}
+        ignoreMinDate={ignoreMinDate}
+        dayProps={{selectedBackgroundColor, selectedTextColor, todayColor}}
+        month={month}
+      />
+    );
+  };
 
+  function handleSymptomsClick() {
+    // navigation.navigate('Symptoms');
+    var diff = new Date(untilDate).getTime() - new Date(startDate).getTime();
+    var daydiff = diff / (1000 * 60 * 60 * 24);
+    console.log(daydiff);
+    const formData = new FormData();
+    formData.append('startDate', new Date(startDate).toString());
+    formData.append('endDate', new Date(untilDate).toString());
+    formData.append('symptoms', "[]");
+    Utils.post(APIs.setEntries, formData).then((response) => {
+      console.log(response.data)
+    });
+  }
 
-	return (
-		<View style={{backgroundColor: '#BEDCE6', zIndex: 1000, alignSelf: 'center', width: '100%', flex: 1}}>
-			{
-				props.showClose || props.showReset ?
-					(<View style={{ flexDirection: 'row', justifyContent: "space-between", padding: 20, paddingBottom: 10}}>
-						{
-							props.showClose && <Text style={{fontSize: 20}} onPress={props.onClose}>Close</Text>
-						}
-						{
-							props.showReset && <Text style={{fontSize: 20}} onPress={onReset}>Reset</Text>
-						}
-					</View>)
-					:
-					null
-			}
-			{
-				props.showSelectionInfo ? 
-				(
-				<View style={{ flexDirection: 'row', justifyContent: "space-between", paddingHorizontal: 20, paddingBottom: 5, alignItems: 'center'}}>
-					<View style={{flex: 1}}>
-						<Text style={{fontSize: 25, color: '#0F2F5B'}}>
-							{ startDate ? dayJsMod(startDate).format("MMM DD YYYY") : props.placeHolderStart}
-						</Text>
-					</View>
+  return (
+    <View
+      style={{
+        backgroundColor: '#BEDCE6',
+        zIndex: 1000,
+        alignSelf: 'center',
+        width: '100%',
+        flex: 1,
+      }}>
+      {props.showClose || props.showReset ? (
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            padding: 20,
+            paddingBottom: 10,
+          }}>
+          {props.showClose && (
+            <Text style={{fontSize: 20}} onPress={props.onClose}>
+              Close
+            </Text>
+          )}
+          {props.showReset && (
+            <Text style={{fontSize: 20}} onPress={onReset}>
+              Reset
+            </Text>
+          )}
+        </View>
+      ) : null}
+      {props.showSelectionInfo ? (
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingHorizontal: 20,
+            paddingBottom: 5,
+            alignItems: 'center',
+          }}>
+          <View style={{flex: 1}}>
+            <Text style={{fontSize: 25, color: '#0F2F5B'}}>
+              {startDate
+                ? dayJsMod(startDate).format('MMM DD YYYY')
+                : props.placeHolderStart}
+            </Text>
+          </View>
 
-					<View style={{}}>
-						<Text style={{fontSize: 80}}>
-							/
-						</Text>
-					</View>
+          <View style={{}}>
+            <Text style={{fontSize: 80}}>/</Text>
+          </View>
 
-					<View style={{flex: 1}}>
-						<Text style={{fontSize: 25, color: '#0F2F5B', textAlign: 'right'}}>
-							{ untilDate ? dayJsMod(untilDate).format("MMM DD YYYY") : props.placeHolderUntil}
-						</Text>
-					</View>
-				</View>
-				) : null
-			}
-			
-			{
-				props.infoText != "" &&
-				<View style={props.infoContainerStyle}>
-					<Text style={props.infoStyle}>{props.infoText}</Text>
-				</View>
-			}
-			<View style={styles.dayHeader}>
-				{
-					props.dayHeadings.map((day, i) => {
-						return (<Text style={{width: "14.28%", textAlign: 'center'}} key={i}>{day}</Text>)
-					})
-				}
-			</View>
-			<FlatList
-				style={{ flex: 1 }}
-				data={getMonthStack()}
-				renderItem={ ({item, index}) => { 
-					return handleRenderRow(item, index)
-				}}
-				keyExtractor = { (item, index) => index.toString() }
-				showsVerticalScrollIndicator={false}
-			/>
+          <View style={{flex: 1}}>
+            <Text style={{fontSize: 25, color: '#0F2F5B', textAlign: 'right'}}>
+              {untilDate
+                ? dayJsMod(untilDate).format('MMM DD YYYY')
+                : props.placeHolderUntil}
+            </Text>
+          </View>
+        </View>
+      ) : null}
 
-			{
-				props.showButton ? 
-				(
-				<View style={[styles.buttonWrapper, props.buttonContainerStyle]}>
-					<Button
-						title="Symptoms" 
-						onPress={() => navigation.navigate("Symptoms")}
-						color={props.buttonColor} />
-				</View>
-				) : null
-			}	
-		</View>
-	)
-}
+      {props.infoText != '' && (
+        <View style={props.infoContainerStyle}>
+          <Text style={props.infoStyle}>{props.infoText}</Text>
+        </View>
+      )}
+      <View style={styles.dayHeader}>
+        {props.dayHeadings.map((day, i) => {
+          return (
+            <Text style={{width: '14.28%', textAlign: 'center'}} key={i}>
+              {day}
+            </Text>
+          );
+        })}
+      </View>
+      <FlatList
+        style={{flex: 1}}
+        data={getMonthStack()}
+        renderItem={({item, index}) => {
+          return handleRenderRow(item, index);
+        }}
+        keyExtractor={(item, index) => index.toString()}
+        showsVerticalScrollIndicator={false}
+      />
+
+      {props.showButton ? (
+        <View style={[styles.buttonWrapper, props.buttonContainerStyle]}>
+          <Button
+            title="Symptoms"
+            onPress={handleSymptomsClick}
+            color={props.buttonColor}
+          />
+        </View>
+      ) : null}
+    </View>
+  );
+};
 
 RangeDatepicker.propTypes = {
-	initialMonth: PropTypes.string,
-	dayHeadings: PropTypes.arrayOf(PropTypes.string),
-	availableDates: PropTypes.arrayOf(PropTypes.string),
-	maxMonth: PropTypes.number,
-	buttonColor: PropTypes.string,
-	buttonContainerStyle: PropTypes.object,
-	startDate: PropTypes.string,
-	untilDate: PropTypes.string,
-	minDate: PropTypes.string,
-	maxDate: PropTypes.string,
-	showReset: PropTypes.bool,
-	showClose: PropTypes.bool,
-	ignoreMinDate: PropTypes.bool,
-    isHistorical: PropTypes.bool,
-	onClose: PropTypes.func,
-	onSelect: PropTypes.func,
-	onConfirm: PropTypes.func,
-	placeHolderStart: PropTypes.string,
-	placeHolderUntil: PropTypes.string,
-	selectedBackgroundColor: PropTypes.string,
-	selectedTextColor: PropTypes.string,
-	todayColor: PropTypes.string,
-	infoText: PropTypes.string,
-	infoStyle: PropTypes.object,
-	infoContainerStyle: PropTypes.object,
-	showSelectionInfo: PropTypes.bool,
-	showButton: PropTypes.bool,
+  initialMonth: PropTypes.string,
+  dayHeadings: PropTypes.arrayOf(PropTypes.string),
+  availableDates: PropTypes.arrayOf(PropTypes.string),
+  maxMonth: PropTypes.number,
+  buttonColor: PropTypes.string,
+  buttonContainerStyle: PropTypes.object,
+  startDate: PropTypes.string,
+  untilDate: PropTypes.string,
+  minDate: PropTypes.string,
+  maxDate: PropTypes.string,
+  showReset: PropTypes.bool,
+  showClose: PropTypes.bool,
+  ignoreMinDate: PropTypes.bool,
+  isHistorical: PropTypes.bool,
+  onClose: PropTypes.func,
+  onSelect: PropTypes.func,
+  onConfirm: PropTypes.func,
+  placeHolderStart: PropTypes.string,
+  placeHolderUntil: PropTypes.string,
+  selectedBackgroundColor: PropTypes.string,
+  selectedTextColor: PropTypes.string,
+  todayColor: PropTypes.string,
+  infoText: PropTypes.string,
+  infoStyle: PropTypes.object,
+  infoContainerStyle: PropTypes.object,
+  showSelectionInfo: PropTypes.bool,
+  showButton: PropTypes.bool,
 };
-  
+
 RangeDatepicker.defaultProps = {
-	initialMonth: '',
-	dayHeadings: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-	maxMonth: 12,
-	buttonColor: '#6359A6',
-	buttonContainerStyle: {},
-	showReset: true,
-	showClose: true,
-	ignoreMinDate: false,
-	isHistorical: false,
-	onClose: () => {},
-	onSelect: () => {},
-	onConfirm: () => {},
-	placeHolderStart: 'Start Date',
-	placeHolderUntil: 'Until Date',
-	selectedBackgroundColor: '#6359A6',
-	selectedTextColor: '#BA0021',
-	todayColor: '#6359A6',
-	startDate: '',
-	untilDate: '',
-	minDate: '',
-	maxDate: '',
-	infoText: '',
-	infoStyle: {color: '#0F2F5B', fontSize: 100},
-	infoContainerStyle: {marginRight: 20, paddingHorizontal: 20, paddingVertical: 5, backgroundColor: '#6359A6', borderRadius: 20, alignSelf: 'flex-end'},
-	showSelectionInfo: true,
-	showButton: true,
+  initialMonth: '',
+  dayHeadings: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+  maxMonth: 12,
+  buttonColor: '#6359A6',
+  buttonContainerStyle: {},
+  showReset: true,
+  showClose: true,
+  ignoreMinDate: false,
+  isHistorical: false,
+  onClose: () => {},
+  onSelect: () => {},
+  onConfirm: () => {},
+  placeHolderStart: 'Start Date',
+  placeHolderUntil: 'Until Date',
+  selectedBackgroundColor: '#6359A6',
+  selectedTextColor: '#BA0021',
+  todayColor: '#6359A6',
+  startDate: '',
+  untilDate: '',
+  minDate: '',
+  maxDate: '',
+  infoText: '',
+  infoStyle: {color: '#0F2F5B', fontSize: 100},
+  infoContainerStyle: {
+    marginRight: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    backgroundColor: '#6359A6',
+    borderRadius: 20,
+    alignSelf: 'flex-end',
+  },
+  showSelectionInfo: true,
+  showButton: true,
 };
 
 const styles = StyleSheet.create({
-	dayHeader : {
-		flexDirection: 'row',
-
-		paddingBottom: 10,
-		paddingTop: 10,
-	},
-	buttonWrapper : {
-		paddingVertical: 10,
-		paddingHorizontal: 15,
-		backgroundColor: '#BEDCE6',
-		borderTopWidth: 1,
-		borderColor: '#BEDCE6',
-		alignItems: 'stretch'
-	},
+  dayHeader: {
+    flexDirection: 'row',
+    paddingBottom: 10,
+    paddingTop: 10,
+  },
+  buttonWrapper: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: '#BEDCE6',
+    borderTopWidth: 1,
+    borderColor: '#BEDCE6',
+    alignItems: 'stretch',
+  },
 });
 
 export default RangeDatepicker;

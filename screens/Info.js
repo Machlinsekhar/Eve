@@ -14,6 +14,12 @@ import {APIs} from '../config/APIs';
 export default function Info() {
   const navigation = useNavigation();
 
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('Home');
+    }, 2000)
+  }, [])
+
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <ImageBackground
@@ -25,8 +31,7 @@ export default function Info() {
             Machlin Carissa Benetta Sebasty
           </Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
-            style={styles.button}>
+            >
             <Text style={styles.buttonText}>Welcome</Text>
           </TouchableOpacity>
         </View>
@@ -68,8 +73,8 @@ const styles = StyleSheet.create({
 
   buttonText: {
     textAlign: 'center',
-    fontSize: 22,
-    color: '#ffffff',
+    color: '#6359A6',
+    fontSize: 30,
     paddingTop: 8,
     fontWeight: '600',
   },

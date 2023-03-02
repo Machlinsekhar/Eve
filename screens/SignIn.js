@@ -31,6 +31,7 @@ export default function SignIn() {
     const formData = new FormData();
     formData.append('password', password);
     formData.append('email', username);
+    
     fetch(APIs.login, {
       method: 'POST',
       mode: 'cors',
