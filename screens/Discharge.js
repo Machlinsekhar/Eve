@@ -21,7 +21,7 @@ export default function TabTwoScreen() {
 
     return (
         <View style={styles.container}>
-            
+
             <View style={styles.separator} />
             <Modal isVisible={isModalVisible}>
                 <Modal.Container>
@@ -29,16 +29,26 @@ export default function TabTwoScreen() {
 
                         <Modal.Body>
                             <Text style={styles.text}>
-                                Want access? How heavy is the bleeding?
+                                Want access? How does your Vaginal enterance feel like?
                             </Text>
+                            <View style={styles.button}>
+                                <Button title=" Dry " onPress={handleSignUp} />
+                                <Button title=" Wet " onPress={handleSignUp} />
+                                <Button title=" Nothing " onPress={handleSignUp} />
+                                <Button title=" Slippery " onPress={handleSignUp} />
+                            </View>
 
                         </Modal.Body>
                         <Modal.Footer>
+                            <Text style={styles.text}>
+                                Want access? Looking at it or touching your vaginal discharge what describe it best ?
+                            </Text>
+
                             <View style={styles.button}>
-                                <Button title=" Spotting " onPress={handleSignUp} />
-                                <Button title=" Light " onPress={handleSignUp} />
-                                <Button title=" Medium " onPress={handleSignUp} />
-                                <Button title=" Heavy " onPress={handleSignUp} />
+                                <Button title=" Creamy " onPress={handleSignUp} />
+                                <Button title=" Whiteish " onPress={handleSignUp} />
+                                <Button title=" Nothing " onPress={handleSignUp} />
+                                <Button title=" Unusual " onPress={handleSignUp} />
                             </View>
                         </Modal.Footer>
                     </View>

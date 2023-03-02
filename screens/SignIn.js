@@ -9,8 +9,10 @@ import {
   TextInput,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import Home from './Home';
 import {ImageBackground} from 'react-native';
 import {APIs} from '../config/APIs';
+import Register from './Register';
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -77,7 +79,11 @@ export default function SignIn() {
         </View>
         <View style={styles.sectionend}>
           <Text style={styles.endline}>Don't have an account?</Text>
-          <Text style={styles.link} onPress={onSubmit}>
+          <Text
+            style={styles.link}
+            onPress={() => {
+              navigation.navigate('Register');
+            }}>
             Register
           </Text>
         </View>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { Text, View, StyleSheet, Button } from "react-native";
 import { Modal } from "./Modal";
 
 export default function TabTwoScreen() {
@@ -21,7 +21,7 @@ export default function TabTwoScreen() {
 
     return (
         <View style={styles.container}>
-            
+            <Text style={styles.title}>Premium stuff here</Text>
             <View style={styles.separator} />
             <Modal isVisible={isModalVisible}>
                 <Modal.Container>
@@ -35,10 +35,15 @@ export default function TabTwoScreen() {
                         </Modal.Body>
                         <Modal.Footer>
                             <View style={styles.button}>
-                                <Button title=" Spotting " onPress={handleSignUp} />
-                                <Button title=" Light " onPress={handleSignUp} />
-                                <Button title=" Medium " onPress={handleSignUp} />
-                                <Button title=" Heavy " onPress={handleSignUp} />
+                                <Button title=" Happy " onPress={handleSignUp} />
+                                <Button title=" Sad " onPress={handleSignUp} />
+                                <Button title=" Stressed " onPress={handleSignUp} />
+                                <Button title=" Balanced " onPress={handleSignUp} />
+                                <Button title=" Energetic" onPress={handleSignUp} />
+                                <Button title=" Anxious " onPress={handleSignUp} />
+                                <Button title=" Fatigue " onPress={handleSignUp} />
+                                <Button title=" Angry " onPress={handleSignUp} />
+                                <Button title=" Everything is fine " onPress={handleSignUp} />
                             </View>
                         </Modal.Footer>
                     </View>

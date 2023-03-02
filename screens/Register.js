@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,13 +6,14 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
-  Alert,
   TextInput,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import SignIn from './SignIn';
+import axios from 'axios';
+import {APIs} from '../config/APIs';
 
 export default function Register() {
+  const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -51,7 +52,6 @@ export default function Register() {
     setName(text);
   }
 
-  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <ImageBackground
@@ -64,27 +64,25 @@ export default function Register() {
           <Text style={styles.label}>Name</Text>
           <TextInput
             style={styles.input}
-            onChangeText={handleNameChange}
             placeholder="Ex: Machlin"
+            onChangeText={handleNameChange}
           />
           <Text style={styles.label}>Username</Text>
           <TextInput
             style={styles.input}
-            onChangeText={handleUsernameChange}
             placeholder="Ex: abc@gmail.com"
+            onChangeText={handleUsernameChange}
           />
           <Text style={styles.label}>Password</Text>
           <TextInput
             secureTextEntry={true}
             style={styles.input}
-            onChangeText={handlePasswordChange}
             placeholder="Max 8 characters"
+            onChangeText={handlePasswordChange}
           />
         </View>
         <View style={styles.sectionbutton}>
-          <TouchableOpacity
-            onPress={(onPress = {onSubmit})}
-            style={styles.button}>
+          <TouchableOpacity onPress={onSubmit} style={styles.button}>
             <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
           <View style={styles.sectionend}>
