@@ -1,0 +1,25 @@
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {useEffect} from 'react';
+
+function AuthMiddleware() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    fetch(APIs.getEntries, {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+    }).then(async res => {
+      if (res.status >= 400 && res.status < 500) {
+        navigation.navigate('Start');
+      }
+      if (res.status >= 200 && res.status < 300) {
+        const response = await res.text();
+        console.log(response);
+      }
+    });
+  }, []);
+  return <></>;
+}
+
+export default AuthMiddleware;

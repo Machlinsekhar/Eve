@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {
   SafeAreaView,
@@ -6,71 +6,45 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
-  Alert,
   TextInput,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Home from './Home';
-import { ImageBackground } from 'react-native';
-import { APIs } from '../config/APIs';
+import {useNavigation} from '@react-navigation/native';
+import {ImageBackground} from 'react-native';
+import {APIs} from '../config/APIs';
 
 export default function SignIn() {
   const navigation = useNavigation();
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [name, setName] = useState();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   function handleUsernameChange(text) {
-    setUsername(text)
+    setUsername(text);
   }
 
   function handlePasswordChange(text) {
     setPassword(text);
   }
-  
-  function handleNameChange(text) {
-    setName(text);
-  }
 
   function onSubmit() {
     const formData = new FormData();
-    formData.append('name', name);
     formData.append('password', password);
-    formData.append('username', username);
-    console.log("Test main")
-    // axios
-    //   .post('http://172.22.58.1:5000/signup', formData)
-    //   .then(resp => {
-    //     console.log(resp.data);
-    //   })
-    //   .catch(error => console.err(error));
-      fetch(APIs.signup, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        credentials: "include", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "multipart/form-data",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        body: formData, // body data type must match "Content-Type" header
-      }).then((res) => {
-      return res.text()
-    }).then((response) => {
-        console.log(response)
+    formData.append('email', username);
+    fetch(APIs.login, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: formData,
+    }).then(async res => {
+      if (res.status >= 200 && res.status < 300) {
+        const response = await res.text();
+        console.log(response);
+        navigation.navigate('Info');
+      }
     });
-    navigation.navigate('Info')
   }
-
-  useEffect(() => {
-    console.log("axios  ", axios)
-    axios.get('http://172.22.58.1:5000/get-entries').then(resp => {
-        console.log(resp.data);
-      })
-      .catch(error => console.err(error));
-      console.log("hola");
-  }, [])
 
   return (
     <SafeAreaView style={styles.sectionContainer}>
@@ -88,12 +62,6 @@ export default function SignIn() {
             placeholder="Ex: abc@gmail.com"
             onChangeText={handleUsernameChange}
           />
-          <Text style={styles.label}>Name</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your name"
-            onChangeText={handlePasswordChange}
-          />
           <Text style={styles.label}>Password</Text>
           <TextInput
             secureTextEntry={true}
@@ -103,31 +71,25 @@ export default function SignIn() {
           />
         </View>
         <View style={styles.sectionbutton}>
-          <TouchableOpacity
-            onPress={onSubmit}
-            style={styles.button}>
+          <TouchableOpacity onPress={onSubmit} style={styles.button}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.sectionend}>
           <Text style={styles.endline}>Don't have an account?</Text>
-          <Text
-            style={styles.link}
-            onPress={onSubmit}>
+          <Text style={styles.link} onPress={onSubmit}>
             Register
           </Text>
         </View>
       </ImageBackground>
     </SafeAreaView>
   );
-
-};
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
-    backgroundColor: '#BEDCE6'
-
+    backgroundColor: '#BEDCE6',
   },
   sectionimage: {
     flex: 1,
@@ -148,10 +110,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     paddingBottom: 20,
     paddingTop: 220,
-    letterSpacing: 1.25
+    letterSpacing: 1.25,
   },
   sectionend: {
-    flexDirection: "row"
+    flexDirection: 'row',
   },
   endline: {
     fontSize: 17,
@@ -161,7 +123,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingTop: 20,
     letterSpacing: 1,
-    flex: 1.2
+    flex: 1.2,
   },
   link: {
     fontSize: 17,
@@ -170,7 +132,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingTop: 20,
     letterSpacing: 1,
-    flex: 0.5
+    flex: 0.5,
   },
   sectionview: {
     paddingBottom: 20,
@@ -185,7 +147,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: 360,
     marginBottom: 15,
-    borderColor: "#BEDCE6",
+    borderColor: '#BEDCE6',
     borderWidth: 2,
     fontSize: 17,
     paddingHorizontal: 20,
@@ -195,12 +157,11 @@ const styles = StyleSheet.create({
   label: {
     color: '#0F2F5B',
     fontWeight: '600',
-    fontSize: 20
+    fontSize: 20,
   },
 
   sectionbutton: {
-    alignItems: "center"
-
+    alignItems: 'center',
   },
 
   button: {
@@ -209,7 +170,6 @@ const styles = StyleSheet.create({
     width: 360,
     height: 45,
     marginTop: 25,
-
   },
 
   buttonText: {
@@ -217,7 +177,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#ffffff',
     paddingTop: 10,
-    fontWeight: '600'
+    fontWeight: '600',
   },
-
-})
+});

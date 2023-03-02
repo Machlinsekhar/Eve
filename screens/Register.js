@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,14 +9,54 @@ import {
   Alert,
   TextInput,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import SignIn from './SignIn';
 
 export default function Register() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
+  function onSubmit() {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('password', password);
+    formData.append('email', username);
+    fetch(APIs.signup, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: formData,
+    }).then(async res => {
+      if (res.status >= 200 && res.status < 300) {
+        const response = await res.text();
+        console.log(response);
+      }
+    });
+    navigation.navigate('Info');
+  }
+
+  function handleUsernameChange(text) {
+    setUsername(text);
+  }
+
+  function handlePasswordChange(text) {
+    setPassword(text);
+  }
+
+  function handleNameChange(text) {
+    setName(text);
+  }
+
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.sectionContainer} >
-      <ImageBackground source={require('../assests/signin.png')} style={styles.sectionimage}>
+    <SafeAreaView style={styles.sectionContainer}>
+      <ImageBackground
+        source={require('../assests/signin.png')}
+        style={styles.sectionimage}>
         <View style={styles.sectionview}>
           <Text style={styles.sectionTitle}>Register</Text>
         </View>
@@ -24,41 +64,47 @@ export default function Register() {
           <Text style={styles.label}>Name</Text>
           <TextInput
             style={styles.input}
+            onChangeText={handleNameChange}
             placeholder="Ex: Machlin"
           />
           <Text style={styles.label}>Username</Text>
           <TextInput
             style={styles.input}
+            onChangeText={handleUsernameChange}
             placeholder="Ex: abc@gmail.com"
           />
           <Text style={styles.label}>Password</Text>
           <TextInput
             secureTextEntry={true}
             style={styles.input}
+            onChangeText={handlePasswordChange}
             placeholder="Max 8 characters"
           />
         </View>
         <View style={styles.sectionbutton}>
-          <TouchableOpacity onPress={() => navigation.navigate('Hello')} style={styles.button}>
+          <TouchableOpacity
+            onPress={(onPress = {onSubmit})}
+            style={styles.button}>
             <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
           <View style={styles.sectionend}>
             <Text style={styles.endline}>Already have an account?</Text>
-            <Text style={styles.link} onPress={() => navigation.navigate('SignIn')}>Sign In</Text>
+            <Text
+              style={styles.link}
+              onPress={() => navigation.navigate('SignIn')}>
+              Sign In
+            </Text>
           </View>
         </View>
       </ImageBackground>
     </SafeAreaView>
-
   );
-
-};
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
-    backgroundColor: '#BEDCE6'
-
+    backgroundColor: '#BEDCE6',
   },
   sectionimage: {
     flex: 1,
@@ -79,7 +125,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     paddingBottom: 20,
     paddingTop: 220,
-    letterSpacing: 1.25
+    letterSpacing: 1.25,
   },
 
   sectionview: {
@@ -95,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: 360,
     marginBottom: 15,
-    borderColor: "#BEDCE6",
+    borderColor: '#BEDCE6',
     borderWidth: 2,
     fontSize: 17,
     paddingHorizontal: 20,
@@ -105,12 +151,11 @@ const styles = StyleSheet.create({
   label: {
     color: '#0F2F5B',
     fontWeight: '600',
-    fontSize: 20
+    fontSize: 20,
   },
 
   sectionbutton: {
-    alignItems: "center"
-
+    alignItems: 'center',
   },
 
   button: {
@@ -119,7 +164,6 @@ const styles = StyleSheet.create({
     width: 360,
     height: 45,
     marginTop: 25,
-
   },
 
   buttonText: {
@@ -127,10 +171,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#ffffff',
     paddingTop: 10,
-    fontWeight: '600'
+    fontWeight: '600',
   },
   sectionend: {
-    flexDirection: "row"
+    flexDirection: 'row',
   },
   endline: {
     fontSize: 17,
@@ -140,7 +184,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingTop: 20,
     letterSpacing: 1,
-    flex: 1.3
+    flex: 1.3,
   },
   link: {
     fontSize: 17,
@@ -149,6 +193,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingTop: 20,
     letterSpacing: 1,
-    flex: 0.5
-  }
+    flex: 0.5,
+  },
 });
