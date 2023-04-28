@@ -1,4 +1,4 @@
-const baseURL = 'http://172.22.58.1:5000';
+const baseURL = 'http://192.168.1.105:5000';
 export const APIs = {
   signup: `${baseURL}/signup`,
   login: `${baseURL}/login`,

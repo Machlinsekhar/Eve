@@ -15,32 +15,7 @@ import { APIs } from '../config/APIs';
 
 export default function DOB() {
   const navigation = useNavigation();
-  function onSubmit() {
-    const formData = new FormData();
-    formData.append('date', date);
-
-    console.log("Test main")
-    // axios
-    //   .post('http://172.22.58.1:5000/signup', formData)
-    //   .then(resp => {
-    //     console.log(resp.data);
-    //   })
-    //   .catch(error => console.err(error));
-    fetch(APIs.setEntries, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      credentials: "include", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "multipart/form-data",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: "follow", // manual, *follow, error
-      body: formData, // body data type must match "Content-Type" header
-    }).then((res) => {
-      return res.text()
-    }).then((response) => {
-      console.log(response)
-    });
+  function onSubmit(){
     navigation.navigate('Cycle')
   }
   const [date, setDate] = useState(new Date());

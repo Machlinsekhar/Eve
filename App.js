@@ -27,6 +27,7 @@ import Welcome from './screens/Welcome';
 import HomeRegister1 from './screens/HomeRegister1.js';
 import AuthMiddleware from './screens/AuthMiddleware';
 import Logout from './screens/Logout';
+import Login from './screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
 
 
@@ -84,6 +85,11 @@ export default function App() {
         <Stack.Screen
           name="Loading"
           component={Loading}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
           options={{headerShown: false}}
         />
         <Stack.Screen

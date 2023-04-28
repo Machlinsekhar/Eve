@@ -31,7 +31,7 @@ export default function Register() {
       }
       if (response.status >= 200 && response.status < 300) {
         console.log(response.data);
-        navigation.navigate('Hello');
+        navigation.navigate('Login');
       }
     });
   }

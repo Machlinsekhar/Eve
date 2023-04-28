@@ -1,12 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView,TouchableHighlight,ImageBackground, Text, StyleSheet, View, TouchableOpacity, Image, Alert, TextInput, Button } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import {APIs} from '../config/APIs';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
+import * as tf from '@tensorflow/tfjs';
+import {bundleResourceIO, decodeJpeg} from '@tensorflow/tfjs-react-native';
 
+const modelJSON = require('./model.json')
+const modelWeights = require('./group1-shard1of1.bin')
 // const Drawer = createDrawerNavigator();
 
   export default function Home(){
     const navigation = useNavigation();
+    useEffect(()=>{
+      fetch(APIs.getEntries, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include',
+
+      }).then(async res => {
+        if (res.status >= 200 && res.status < 300) {
+          const response = await res.json();
+          
+          const diffInMs   = Date.parse(response[1].start_date) - Date.parse(response[0].start_date)
+          const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+          console.log(diffInDays);
+
+          async function loadModel(){
+            const model = await tf.loadLayersModel('./model.json');
+            model.predict(tf.tensor(diffInDays)).print()
+          }
+          loadModel()
+
+          // async function loadModel(){
+          //   //.ts: const loadModel = async ():Promise<void|tf.LayersModel>=>{
+          //       const model = await tf.loadLayersModel(
+          //           bundleResourceIO(modelJSON, modelWeights)
+          //       ).catch((e)=>{
+          //         console.log("[LOADING ERROR] info:",e)
+          //       })
+          //       return model
+          //   }
+        }
+      });
+    },[])
     return (
       <SafeAreaView style= {styles.sectionContainer} >
         <ImageBackground source={require('../assests/home.png')}>
