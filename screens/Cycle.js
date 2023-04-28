@@ -64,32 +64,32 @@ export default function Cycle() {
     
   }
   function onSubmit() {
-    const formData = new FormData();
-    formData.append('date', date);
+    // const formData = new FormData();
+    // formData.append('date', date);
 
-    console.log("Test main")
-    // axios
-    //   .post('http://172.22.58.1:5000/signup', formData)
-    //   .then(resp => {
-    //     console.log(resp.data);
-    //   })
-    //   .catch(error => console.err(error));
-    fetch(APIs.setEntries, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      credentials: "include", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "multipart/form-data",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: "follow", // manual, *follow, error
-      body: formData, // body data type must match "Content-Type" header
-    }).then((res) => {
-      return res.text()
-    }).then((response) => {
-      console.log(response)
+    // console.log("Test main")
+    // // axios
+    // //   .post('http://172.22.58.1:5000/signup', formData)
+    // //   .then(resp => {
+    // //     console.log(resp.data);
+    // //   })
+    // //   .catch(error => console.err(error));
+    // fetch(APIs.setEntries, {
+    //   method: "POST", // *GET, POST, PUT, DELETE, etc.
+    //   mode: "cors", // no-cors, *cors, same-origin
+    //   credentials: "include", // include, *same-origin, omit
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    //   redirect: "follow", // manual, *follow, error
+    //   body: formData, // body data type must match "Content-Type" header
+    // }).then((res) => {
+    //   return res.text()
+    // }).then((response) => {
+    //   console.log(response)
 
-    });
+    // });
     navigation.navigate('PCOS')
   }
 
@@ -137,8 +137,7 @@ export default function Cycle() {
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
-    backgroundColor: '#BEDCE6'
-
+    backgroundColor: '#BEDCE6',
   },
   sectionimage: {
     flex: 1,
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     paddingBottom: 20,
     paddingTop: 150,
-    letterSpacing: 1.25
+    letterSpacing: 1.25,
   },
   sectionend: {
     fontSize: 21,
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     paddingBottom: 20,
     paddingTop: 30,
-    letterSpacing: 1.25
+    letterSpacing: 1.25,
   },
 
   sectionview: {
@@ -182,7 +181,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: 360,
     marginBottom: 15,
-    borderColor: "#BEDCE6",
+    borderColor: '#BEDCE6',
     borderWidth: 2,
     fontSize: 17,
     paddingHorizontal: 20,
@@ -191,21 +190,19 @@ const styles = StyleSheet.create({
   label: {
     color: '#008080',
     fontWeight: '600',
-    fontSize: 20
+    fontSize: 20,
   },
 
   sectionbutton: {
-    alignItems: "center"
-
+    alignItems: 'center',
   },
 
   button: {
-   
+    backgroundColor: '#6359A6',
     borderRadius: 6,
     width: 360,
     height: 45,
     marginTop: 25,
-
   },
 
   buttonText: {
@@ -213,7 +210,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#ffffff',
     paddingTop: 10,
-    fontWeight: '600'
+    fontWeight: '600',
   },
-
 });

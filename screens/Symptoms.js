@@ -113,12 +113,12 @@ export default function Symptoms() {
                 <View>
                   {<View>
                 <Text style={styles.buttonText}>Did you experienced any type of Body pain?</Text>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row',  }}>
                   <TouchableOpacity style={styles.entry}><Text style={styles.entrytext}>cramps</Text></TouchableOpacity>
                   <TouchableOpacity style={styles.entry}><Text style={styles.entrytext}>headache</Text></TouchableOpacity>
                   <TouchableOpacity style={styles.entry}><Text style={styles.entrytext}>Tender Breasts</Text></TouchableOpacity>
-                  <TouchableOpacity style={styles.entry}><Text style={styles.entrytext}>backache</Text></TouchableOpacity>
-                </View>
+                  </View>
+                  
                 <TouchableOpacity onPress={toggleModal} style={styles.modalbutton}>
                   <Text style={styles.modalbuttontext}>Save</Text>
                 </TouchableOpacity>

@@ -13,15 +13,42 @@ import {
   Button,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {APIs} from '../config/APIs';
+
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 // const Drawer = createDrawerNavigator();
 
+
 export default function HomeRegister1() {
   const navigation = useNavigation();
+
+  function onSubmit() {
+    fetch(APIs.logout, {
+      // method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      // headers: {
+      //   'Content-Type': 'multipart/form-data',
+      // },
+      // body: formData,
+    }).then(async res => {
+      if (res.status >= 200 && res.status < 300) {
+        const response = await res.text();
+        console.log(response);
+        navigation.navigate('Start');
+      }
+    });
+  }
+  
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <ImageBackground source={require('../assests/home.png')}>
         <View style={styles.sectionview}>
+          <TouchableOpacity>
+            <Text onPress={onSubmit} style={styles.buttonText1}>
+              Logout
+            </Text>
+          </TouchableOpacity>
           <Text style={styles.sectionTitle}>No Date Predicted</Text>
           <Text style={styles.sectioncode}>
             {' '}
@@ -111,6 +138,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#ffffff',
     paddingTop: 10,
+    fontWeight: '600',
+  },
+
+  buttonText1: {
+    textAlign: 'right',
+    fontSize: 20,
+    color: '#0F2F5B',
+    paddingTop: 10,
+    paddingRight: 10,
     fontWeight: '600',
   },
 });

@@ -26,6 +26,7 @@ import Calendar from './screens/Calendar';
 import Welcome from './screens/Welcome';
 import HomeRegister1 from './screens/HomeRegister1.js';
 import AuthMiddleware from './screens/AuthMiddleware';
+import Logout from './screens/Logout';
 import {NavigationContainer} from '@react-navigation/native';
 
 
@@ -123,6 +124,11 @@ export default function App() {
         <Stack.Screen
           name="Calendar"
           component={Calendar}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Logout"
+          component={Logout}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
